@@ -3179,6 +3179,58 @@ self.__RSC_MANIFEST={
         ],
         "async": false
       }
+    },
+    "(app-client)/./src/app/clientLib.ts": {
+      "*": {
+        "id": "(sc_client)/./src/app/clientLib.ts",
+        "name": "*",
+        "chunks": [
+          "app/page:app/page"
+        ],
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./src/app/clientLib.ts",
+        "name": "",
+        "chunks": [
+          "app/page:app/page"
+        ],
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./src/app/clientLib.ts",
+        "name": "default",
+        "chunks": [
+          "app/page:app/page"
+        ],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/components/LoginHero.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/components/LoginHero.tsx",
+        "name": "*",
+        "chunks": [
+          "app/page:app/page"
+        ],
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./src/app/components/LoginHero.tsx",
+        "name": "",
+        "chunks": [
+          "app/page:app/page"
+        ],
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./src/app/components/LoginHero.tsx",
+        "name": "default",
+        "chunks": [
+          "app/page:app/page"
+        ],
+        "async": false
+      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -11919,6 +11971,54 @@ self.__RSC_MANIFEST={
     "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\node_modules\\next\\dist\\esm\\shared\\lib\\utils\\warn-once.js#warnOnce": {
       "id": "(app-client)/./node_modules/next/dist/shared/lib/utils/warn-once.js",
       "name": "warnOnce",
+      "chunks": [
+        "app/page:app/page"
+      ],
+      "async": false
+    },
+    "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\clientLib.ts": {
+      "id": "(app-client)/./src/app/clientLib.ts",
+      "name": "*",
+      "chunks": [
+        "app/page:app/page"
+      ],
+      "async": false
+    },
+    "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\clientLib.ts#": {
+      "id": "(app-client)/./src/app/clientLib.ts",
+      "name": "",
+      "chunks": [
+        "app/page:app/page"
+      ],
+      "async": false
+    },
+    "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\clientLib.ts#default": {
+      "id": "(app-client)/./src/app/clientLib.ts",
+      "name": "default",
+      "chunks": [
+        "app/page:app/page"
+      ],
+      "async": false
+    },
+    "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\components\\LoginHero.tsx": {
+      "id": "(app-client)/./src/app/components/LoginHero.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:app/page"
+      ],
+      "async": false
+    },
+    "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\components\\LoginHero.tsx#": {
+      "id": "(app-client)/./src/app/components/LoginHero.tsx",
+      "name": "",
+      "chunks": [
+        "app/page:app/page"
+      ],
+      "async": false
+    },
+    "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\components\\LoginHero.tsx#default": {
+      "id": "(app-client)/./src/app/components/LoginHero.tsx",
+      "name": "default",
       "chunks": [
         "app/page:app/page"
       ],

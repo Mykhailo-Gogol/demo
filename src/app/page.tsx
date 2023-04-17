@@ -1,10 +1,10 @@
-import Card from './components/Card'
-import Hero from './components/Hero'
-import LoginHero from './components/LoginHero'
+import Card from './components/Card';
+import Hero from './components/Hero';
+import LoginHero from './clientLib';
 
-import I1 from './static/1.jpg'
-import I2 from './static/2.jpg'
-import I3 from './static/3.jpg'
+import I1 from './static/1.jpg';
+import I2 from './static/2.jpg';
+import I3 from './static/3.jpg';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <LoginHero />
 
-      <ul className="grid lg:grid-cols-3 gap-10">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
         <li>
           <Card image={I1} />
         </li>
@@ -24,5 +24,5 @@ export default function Home() {
         </li>
       </ul>
     </main>
-  )
+  );
 }

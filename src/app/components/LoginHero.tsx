@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react';
 
 export default function LoginHero() {
+  const [form, setForm] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
   return (
     <div className="hero mb-20">
       <div className="hero-content flex-col lg:flex-row-reverse lg:justify-around">
@@ -20,8 +28,10 @@ export default function LoginHero() {
               </label>
               <input
                 type="text"
+                name="email"
                 placeholder="email"
                 className="input input-bordered"
+                onChange={handleInput}
               />
             </div>
             <div className="form-control">
@@ -30,8 +40,10 @@ export default function LoginHero() {
               </label>
               <input
                 type="text"
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
+                onChange={handleInput}
               />
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
@@ -40,11 +52,18 @@ export default function LoginHero() {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button
+                onClick={() => {
+                  alert(form);
+                }}
+                className="btn btn-primary"
+              >
+                Login
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
