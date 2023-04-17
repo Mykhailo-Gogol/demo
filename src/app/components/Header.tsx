@@ -5,7 +5,7 @@ import { faHeart, faFaceSmileBeam } from '@fortawesome/free-regular-svg-icons'
 
 export default function Header() {
   return (
-    <header className="navbar bg-base-100">
+    <header className="navbar bg-primary">
       <div className="flex-1">
         <Link href={'/'} className="btn btn-ghost btn-circle p-2">
           <FontAwesomeIcon icon={faHeart} size="xs" />

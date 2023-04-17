@@ -8,7 +8,7 @@ export default function Hero() {
     <div className="mb-20 hero-content flex-col lg:flex-row-reverse p-0 pt-10">
       <Image
         src={People}
-        className="max-w-full rounded-lg shadow-2xl"
+        className="max-w-full rounded-md shadow-2xl rounded-br-[100px]"
         alt="hero"
         width={500}
         height={300}
@@ -20,7 +20,7 @@ export default function Hero() {
           excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
           id nisi.
         </p>
-        <button className="btn btn-primary">Get Started</button>
+        <button className="btn btn-accent">Get Started</button>
       </div>
     </div>
   )
