@@ -3185,7 +3185,7 @@ self.__RSC_MANIFEST={
         "id": "(sc_client)/./src/app/clientLib.ts",
         "name": "*",
         "chunks": [
-          "app/page:app/page"
+          "app/login/page:app/login/page"
         ],
         "async": false
       },
@@ -3193,7 +3193,7 @@ self.__RSC_MANIFEST={
         "id": "(sc_client)/./src/app/clientLib.ts",
         "name": "",
         "chunks": [
-          "app/page:app/page"
+          "app/login/page:app/login/page"
         ],
         "async": false
       },
@@ -3201,7 +3201,7 @@ self.__RSC_MANIFEST={
         "id": "(sc_client)/./src/app/clientLib.ts",
         "name": "default",
         "chunks": [
-          "app/page:app/page"
+          "app/login/page:app/login/page"
         ],
         "async": false
       }
@@ -3211,7 +3211,7 @@ self.__RSC_MANIFEST={
         "id": "(sc_client)/./src/app/components/LoginHero.tsx",
         "name": "*",
         "chunks": [
-          "app/page:app/page"
+          "app/login/page:app/login/page"
         ],
         "async": false
       },
@@ -3219,7 +3219,7 @@ self.__RSC_MANIFEST={
         "id": "(sc_client)/./src/app/components/LoginHero.tsx",
         "name": "",
         "chunks": [
-          "app/page:app/page"
+          "app/login/page:app/login/page"
         ],
         "async": false
       },
@@ -3227,7 +3227,7 @@ self.__RSC_MANIFEST={
         "id": "(sc_client)/./src/app/components/LoginHero.tsx",
         "name": "default",
         "chunks": [
-          "app/page:app/page"
+          "app/login/page:app/login/page"
         ],
         "async": false
       }
@@ -11980,7 +11980,7 @@ self.__RSC_MANIFEST={
       "id": "(app-client)/./src/app/clientLib.ts",
       "name": "*",
       "chunks": [
-        "app/page:app/page"
+        "app/login/page:app/login/page"
       ],
       "async": false
     },
@@ -11988,7 +11988,7 @@ self.__RSC_MANIFEST={
       "id": "(app-client)/./src/app/clientLib.ts",
       "name": "",
       "chunks": [
-        "app/page:app/page"
+        "app/login/page:app/login/page"
       ],
       "async": false
     },
@@ -11996,7 +11996,7 @@ self.__RSC_MANIFEST={
       "id": "(app-client)/./src/app/clientLib.ts",
       "name": "default",
       "chunks": [
-        "app/page:app/page"
+        "app/login/page:app/login/page"
       ],
       "async": false
     },
@@ -12004,7 +12004,7 @@ self.__RSC_MANIFEST={
       "id": "(app-client)/./src/app/components/LoginHero.tsx",
       "name": "*",
       "chunks": [
-        "app/page:app/page"
+        "app/login/page:app/login/page"
       ],
       "async": false
     },
@@ -12012,7 +12012,7 @@ self.__RSC_MANIFEST={
       "id": "(app-client)/./src/app/components/LoginHero.tsx",
       "name": "",
       "chunks": [
-        "app/page:app/page"
+        "app/login/page:app/login/page"
       ],
       "async": false
     },
@@ -12020,7 +12020,7 @@ self.__RSC_MANIFEST={
       "id": "(app-client)/./src/app/components/LoginHero.tsx",
       "name": "default",
       "chunks": [
-        "app/page:app/page"
+        "app/login/page:app/login/page"
       ],
       "async": false
     },

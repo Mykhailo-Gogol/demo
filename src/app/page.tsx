@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="px-4 lg:px-24">
       <Hero />
-      <LoginHero />
+      <LoginHero title="Login now!" />
 
       <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
         <li>

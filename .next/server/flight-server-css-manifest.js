@@ -5,6 +5,9 @@ self.__RSC_CSS_MANIFEST={
     ]
   },
   "cssModules": {
+    "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\login\\page": [
+      "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\globals.css"
+    ],
     "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\page": [
       "C:\\Users\\Mykhailo\\Documents\\GitHub\\demo\\src\\app\\globals.css"
     ]

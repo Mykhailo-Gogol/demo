@@ -1,7 +1,7 @@
-import React from 'react'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faFaceSmileBeam } from '@fortawesome/free-regular-svg-icons'
+import React from 'react';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faFaceSmileBeam } from '@fortawesome/free-regular-svg-icons';
 
 export default function Header() {
   return (
@@ -30,20 +30,20 @@ export default function Header() {
             className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
           >
             <li>
-              <a className="justify-between">
+              <Link href={'/login'}>
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a>Settings</a>
+              <Link href={'#'}>Settings</Link>
             </li>
             <li>
-              <a>Logout</a>
+              <Link href={'#'}>Logout</Link>
             </li>
           </ul>
         </div>
       </div>
     </header>
-  )
+  );
 }

@@ -1,6 +1,10 @@
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
-export default function LoginHero() {
+interface iProps {
+  title: string;
+}
+
+export default function LoginHero({ title }: iProps) {
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -13,7 +17,7 @@ export default function LoginHero() {
     <div className="hero mb-20">
       <div className="hero-content flex-col lg:flex-row-reverse lg:justify-around">
         <div className="text-center lg:text-left lg:w-1/2">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold">{title}</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -21,7 +25,12 @@ export default function LoginHero() {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
+          <form
+            className="card-body"
+            onSubmit={() => {
+              alert(JSON.stringify(form));
+            }}
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -52,16 +61,11 @@ export default function LoginHero() {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button
-                onClick={() => {
-                  alert(form);
-                }}
-                className="btn btn-primary"
-              >
+              <button type="submit" className="btn btn-primary">
                 Login
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
