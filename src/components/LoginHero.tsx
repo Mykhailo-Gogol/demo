@@ -1,20 +1,44 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from "react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import { appConfig } from "@/utils";
 
 interface iProps {
   title: string;
 }
 
 export default function LoginHero({ title }: iProps) {
+  const user = useUser();
+  const supabaseClient = useSupabaseClient();
+
   const [form, setForm] = useState({
-    email: '',
-    password: ''
+    email: "",
   });
+  const [submited, setSubmited] = useState(false);
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setSubmited(true);
+
+    try {
+      await supabaseClient.auth.signInWithOtp({
+        email: form.email,
+        options: {
+          emailRedirectTo: "http://localhost:3000/profile",
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
-    <div className="hero mb-20">
+    <div className="hero mb-10">
       <div className="hero-content flex-col lg:flex-row-reverse lg:justify-around">
         <div className="text-center lg:text-left lg:w-1/2">
           <h1 className="text-5xl font-bold">{title}</h1>
@@ -24,49 +48,42 @@ export default function LoginHero({ title }: iProps) {
             a id nisi.
           </p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form
-            className="card-body"
-            onSubmit={() => {
-              alert(JSON.stringify(form));
-            }}
-          >
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="text"
-                name="email"
-                placeholder="email"
-                className="input input-bordered"
-                onChange={handleInput}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="text"
-                name="password"
-                placeholder="password"
-                className="input input-bordered"
-                onChange={handleInput}
-              />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button type="submit" className="btn btn-primary">
-                Login
-              </button>
-            </div>
-          </form>
-        </div>
+        {submited && !user ? (
+          <div className="flex flex-col items-center">
+            <span className="mb-4">Welcome! Check out your email</span>
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              size={appConfig.iconSize}
+              width={20}
+            />
+          </div>
+        ) : (
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <form className="card-body" onSubmit={handleSubmit}>
+              <div className="form-control">
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="email"
+                  className="input input-bordered"
+                  value={form.email}
+                  onChange={handleInput}
+                />
+              </div>
+              <div className="form-control mt-6">
+                <button
+                  type="submit"
+                  className={`btn btn-primary ${
+                    !Boolean(form.email) ? "disabled" : ""
+                  }`}
+                  disabled={!Boolean(form.email)}
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );

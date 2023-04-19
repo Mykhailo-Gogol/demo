@@ -1,15 +1,15 @@
-import Image, { StaticImageData } from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import React from "react";
 
 interface iProps {
-  image: StaticImageData
+  image: StaticImageData;
 }
 
 export default function Card({ image }: iProps) {
   return (
     <Link
-      href={'#'}
+      href={"#"}
       className="card bg-base-100 h-80 shadow-xl hover:shadow-2xl h"
     >
       <div className="card-body">
@@ -20,5 +20,5 @@ export default function Card({ image }: iProps) {
         <Image src={image} alt="Shoes" width={1000} />
       </figure>
     </Link>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
-import People from '../static/people_unsplash.jpg';
+import People from "@/static/people_unsplash.jpg";
 
 export default function Hero() {
   return (
-    <div className="mb-20 hero-content flex-col items-start lg:items-center lg:flex-row-reverse p-0 pt-10">
+    <div className="p-0 mb-10 hero-content flex-col items-start lg:items-center lg:flex-row-reverse">
       <Image
         src={People}
         className="max-w-full rounded-md shadow-2xl lg:rounded-br-[100px]"
