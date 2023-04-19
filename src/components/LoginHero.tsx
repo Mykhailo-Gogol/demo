@@ -29,7 +29,7 @@ export default function LoginHero({ title }: iProps) {
       await supabaseClient.auth.signInWithOtp({
         email: form.email,
         options: {
-          emailRedirectTo: "http://localhost:3000/profile",
+          emailRedirectTo: process.env.NEXT_PUBLIC_REDIRECT_URL,
         },
       });
     } catch (e) {
