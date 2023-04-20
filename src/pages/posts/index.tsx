@@ -14,7 +14,7 @@ interface iProps {
   posts: PostType[];
 }
 
-export default function Home({ posts }: iProps) {
+export default function Posts({ posts }: iProps) {
   return (
     <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (

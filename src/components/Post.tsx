@@ -15,7 +15,7 @@ export default function Post({ post }: iProps) {
 
   return (
     <Link
-      href={"home" + "/" + post.fields.slug}
+      href={"posts" + "/" + post.fields.slug}
       className="card bg-base-100 shadow-xl hover:shadow-2xl overflow-hidden"
     >
       <div>

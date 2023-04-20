@@ -47,13 +47,16 @@ export default function Header() {
                 <span className="badge">New</span>
               </Link>
             </li>
-            <li>
-              <Link href={"/home"}>Home</Link>
-            </li>
             {user && (
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
+              <>
+                <li>
+                  <Link href={"/posts"}>All posts</Link>
+                </li>
+
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </>
             )}
           </ul>
         </div>
