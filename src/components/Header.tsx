@@ -3,8 +3,16 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faFaceSmileBeam } from "@fortawesome/free-regular-svg-icons";
 import { appConfig } from "@/utils";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 
 export default function Header() {
+  const user = useUser();
+  const supabaseClient = useSupabaseClient();
+
+  const handleLogout = () => {
+    supabaseClient.auth.signOut();
+  };
+
   return (
     <header className="navbar bg-primary">
       <div className="flex-1">
@@ -40,11 +48,13 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href={"#"}>Settings</Link>
+              <Link href={"/home"}>Home</Link>
             </li>
-            <li>
-              <Link href={"#"}>Logout</Link>
-            </li>
+            {user && (
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
