@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import People from "@/static/people_unsplash.jpg";
+import People from "@/static/welcome/people_unsplash.jpg";
 
 export default function Hero() {
   return (

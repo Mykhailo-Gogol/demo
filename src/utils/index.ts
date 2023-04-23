@@ -5,5 +5,5 @@ interface AppConfigType {
 }
 
 export const appConfig: AppConfigType = {
-  iconSize: "2xl",
+  iconSize: "xl",
 };

@@ -50,12 +50,10 @@ export default function LoginHero({ title }: iProps) {
         </div>
         {submited && !user ? (
           <div className="flex flex-col items-center">
-            <span className="mb-4">Welcome! Check out your email</span>
-            <FontAwesomeIcon
-              icon={faThumbsUp}
-              size={appConfig.iconSize}
-              width={20}
-            />
+            <span className="mb-4">
+              Welcome! Check out your email, and click log in
+            </span>
+            <FontAwesomeIcon icon={faThumbsUp} size={appConfig.iconSize} />
           </div>
         ) : (
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

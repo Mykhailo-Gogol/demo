@@ -15,11 +15,13 @@ export default function App({ Component, pageProps }: AppProps) {
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
-      <Header />
-      <div className="px-4 py-10 lg:px-24 lg:py-12">
-        <Component {...pageProps} />
+      <div className="min-h-screen flex flex-col justify-between">
+        <Header />
+        <div className="px-4 py-10 lg:px-24 lg:py-12">
+          <Component {...pageProps} />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </SessionContextProvider>
   );
 }
