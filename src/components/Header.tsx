@@ -14,8 +14,8 @@ export default function Header() {
   };
 
   const authLinks = [
-    { link: "/profile", text: user ? "Profile" : "Login", badge: true },
     { link: "/", text: user ? "App" : "Welcome" },
+    { link: "/profile", text: user ? "Profile" : "Login", badge: true },
   ];
 
   return (

@@ -49,7 +49,7 @@ export default function LoginHero({ title }: iProps) {
           </p>
         </div>
         {submited && !user ? (
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-start md:items-center">
             <span className="mb-4">
               Welcome! Check out your email, and click log in
             </span>

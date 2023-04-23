@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Card() {
   return (
-    <div className="card w-96 rounded-none">
+    <div className="card rounded-none">
       <figure>
         <Image
           src={first}
