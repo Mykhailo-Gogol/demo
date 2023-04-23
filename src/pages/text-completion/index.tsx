@@ -40,7 +40,7 @@ export default function App() {
         </div>
         <button
           type="submit"
-          className="btn btn-ghost"
+          className="btn btn-secondary disabled:bg-secondary"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -52,7 +52,7 @@ export default function App() {
           <span>{text}</span>
         ) : (
           <span className="label-text">
-            What`s on your mind? Max answear length is 30
+            What`s on your mind? Max answear length is 30 words
           </span>
         )}
       </div>

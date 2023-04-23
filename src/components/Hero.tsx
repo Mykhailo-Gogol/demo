@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 import People from "@/static/welcome/people_unsplash.jpg";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -20,7 +21,9 @@ export default function Hero() {
           excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
           id nisi.
         </p>
-        <button className="btn btn-primary">Get Started</button>
+        <Link href={"/profile"} className="btn btn-accent">
+          Get Started
+        </Link>
       </div>
     </div>
   );
