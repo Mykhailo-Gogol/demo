@@ -10,7 +10,10 @@ export default function Header() {
   const supabaseClient = useSupabaseClient();
 
   const handleLogout = () => {
-    supabaseClient.auth.signOut();
+    const res = confirm("Are you sure?");
+    if (res) {
+      supabaseClient.auth.signOut();
+    }
   };
 
   const authLinks = [
@@ -49,11 +52,11 @@ export default function Header() {
           </label>
           <ul
             tabIndex={0}
-            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            className="mt-3 p-4 w-80 shadow menu menu-compact dropdown-content bg-base-100 rounded-box"
           >
             {authLinks.map(({ link, text, badge }) => (
-              <li key={link}>
-                <Link href={link}>
+              <li key={link} className="mb-1">
+                <Link href={link} className="py-4">
                   {text}
                   {badge && <span className="badge">New</span>}
                 </Link>
