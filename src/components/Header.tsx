@@ -28,12 +28,12 @@ export default function Header() {
   return (
     <header className="navbar">
       <div className="flex-1">
-        <Link href={"/"} className="btn btn-secondary p-2 w-20">
+        <Link href={"/"} className="btn btn-secondary p-2 w-12 lg:w-20">
           <FontAwesomeIcon icon={faHeart} size={appConfig.iconSize} />
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control w-32 md:w-64">
+        <div className="form-control w-40 md:w-64">
           <input
             type="text"
             placeholder="search"
@@ -41,7 +41,7 @@ export default function Header() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-secondary p-2 w-20">
+          <label tabIndex={0} className="btn btn-secondary p-2 w-12 lg:w-20">
             <div>
               <FontAwesomeIcon icon={faUser} size={appConfig.iconSize} />
             </div>

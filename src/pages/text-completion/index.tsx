@@ -1,30 +1,37 @@
 import { openai } from "@/api/openapi";
+import { appConfig } from "@/utils";
+import { faAirbnb } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FormEvent, useState } from "react";
 
 export default function App() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: prompt,
+        max_tokens: 60,
+        temperature: 0,
+      });
 
-    const res = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
-      max_tokens: 30,
-      temperature: 0,
-    });
-
-    return setResponse(res);
+      return setResponse(res);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const text: string = (response?.data.choices[0].text as string).replaceAll(
-    "\n",
-    ""
-  );
+  const text: string = response?.data.choices[0].text as string;
 
   return (
-    <div>
+    <div className="mb-10">
       <form onSubmit={handleSubmit} className="mb-20">
         <div className="form-control w-full max-w-xs mb-5">
           <label className="label">
@@ -48,13 +55,13 @@ export default function App() {
       </form>
 
       <div>
-        {response ? (
-          <span>{text}</span>
-        ) : (
-          <span className="label-text">
-            What`s on your mind? Max answear length is 30 words
-          </span>
-        )}
+        <p className="md:w-1/2">
+          {loading
+            ? "Loading..."
+            : response
+            ? text
+            : "What`s on your mind? Max answear length is 30 words"}
+        </p>
       </div>
     </div>
   );

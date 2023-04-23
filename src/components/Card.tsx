@@ -8,13 +8,7 @@ export default function Card() {
   return (
     <div className="card rounded-none bg-secondary">
       <figure>
-        <Image
-          src={first}
-          className="object-cover"
-          width={1000}
-          height={1000}
-          alt="alt"
-        />
+        <Image src={first} className="object-cover" width={500} alt="alt" />
       </figure>
       <div className="card-body text-slate-100 shadow-xl">
         <h2 className="card-title">Text Completion!</h2>
