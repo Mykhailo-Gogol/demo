@@ -60,7 +60,7 @@ export default function LoginHero({ title }: iProps) {
             <form className="card-body" onSubmit={handleSubmit}>
               <div className="form-control">
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   placeholder="email"
                   className="input input-bordered"
@@ -71,7 +71,7 @@ export default function LoginHero({ title }: iProps) {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className={`btn btn-ghost disabled:bg-secondary ${
+                  className={`btn btn-secondary disabled:bg-secondary ${
                     !Boolean(form.email) ? "disabled" : ""
                   }`}
                   disabled={!Boolean(form.email)}

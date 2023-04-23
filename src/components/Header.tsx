@@ -21,19 +21,19 @@ export default function Header() {
   };
 
   const authLinks = [
-    { link: "/", text: user ? "App" : "Welcome" },
-    { link: "/profile", text: user ? "Profile" : "Login", badge: true },
+    { link: "/", text: user ? "App" : "Welcome", badge: true },
+    { link: "/profile", text: user ? "Profile" : "Login" },
   ];
 
   return (
     <header className="navbar">
       <div className="flex-1">
-        <Link href={"/"} className="btn btn-ghost p-2 w-20 bg-accent">
+        <Link href={"/"} className="btn btn-secondary p-2 w-20">
           <FontAwesomeIcon icon={faHeart} size={appConfig.iconSize} />
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
+        <div className="form-control w-32 md:w-64">
           <input
             type="text"
             placeholder="search"
@@ -41,7 +41,7 @@ export default function Header() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost bg-accent p-2 w-20">
+          <label tabIndex={0} className="btn btn-secondary p-2 w-20">
             <div>
               <FontAwesomeIcon icon={faUser} size={appConfig.iconSize} />
             </div>

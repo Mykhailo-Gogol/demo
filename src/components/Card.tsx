@@ -20,7 +20,7 @@ export default function Card() {
         <h2 className="card-title">Text Completion!</h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <div className="card-actions justify-end pt-4">
-          <Link href="/text-completion" className="btn btn-ghost">
+          <Link href="/text-completion" className="btn btn-secondary">
             Let`s go
           </Link>
         </div>
