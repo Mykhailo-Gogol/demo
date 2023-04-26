@@ -56,7 +56,7 @@ export default function LoginHero({ title }: iProps) {
             <FontAwesomeIcon icon={faThumbsUp} size={appConfig.iconSize} />
           </div>
         ) : (
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
             <form className="card-body" onSubmit={handleSubmit}>
               <div className="form-control">
                 <input
@@ -71,7 +71,7 @@ export default function LoginHero({ title }: iProps) {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className={`btn btn-secondary disabled:bg-secondary ${
+                  className={`btn btn-accent disabled:bg-accent ${
                     !Boolean(form.email) ? "disabled" : ""
                   }`}
                   disabled={!Boolean(form.email)}

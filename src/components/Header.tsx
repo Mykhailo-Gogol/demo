@@ -21,14 +21,18 @@ export default function Header() {
   };
 
   const authLinks = [
-    { link: "/", text: user ? "App" : "Welcome", badge: true },
-    { link: "/profile", text: user ? "Profile" : "Login" },
+    { link: "/", text: user ? "App" : "Welcome", badge: user ? true : false },
+    {
+      link: "/profile",
+      text: user ? "Profile" : "Login",
+      badge: user ? false : true,
+    },
   ];
 
   return (
-    <header className="navbar">
+    <header className="navbar pt-5">
       <div className="flex-1">
-        <Link href={"/"} className="btn btn-secondary p-2 w-12 lg:w-20">
+        <Link href={"/"} className="btn btn-accent p-2 w-12 lg:w-20">
           <FontAwesomeIcon icon={faHeart} size={appConfig.iconSize} />
         </Link>
       </div>
@@ -41,7 +45,7 @@ export default function Header() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-secondary p-2 w-12 lg:w-20">
+          <label tabIndex={0} className="btn btn-accent p-2 w-12 lg:w-20">
             <div>
               <FontAwesomeIcon icon={faUser} size={appConfig.iconSize} />
             </div>

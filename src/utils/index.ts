@@ -39,5 +39,5 @@ interface AppConfigType {
 
 export const appConfig: AppConfigType = {
   iconSize: "xl",
-  defaultTheme: themes.black,
+  defaultTheme: themes.cyberpunk,
 };
