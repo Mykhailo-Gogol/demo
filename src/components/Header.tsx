@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <header className="navbar pt-5">
       <div className="flex-1">
-        <Link href={"/"} className="btn btn-accent p-2 w-12 lg:w-20">
+        <Link href={"/"} className="btn btn-primary p-2 w-12 lg:w-20">
           <FontAwesomeIcon icon={faHeart} size={appConfig.iconSize} />
         </Link>
       </div>
@@ -45,14 +45,14 @@ export default function Header() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-accent p-2 w-12 lg:w-20">
+          <label tabIndex={0} className="btn btn-primary p-2 w-12 lg:w-20">
             <div>
               <FontAwesomeIcon icon={faUser} size={appConfig.iconSize} />
             </div>
           </label>
           <ul
             tabIndex={0}
-            className="mt-3 p-4 w-80 shadow menu menu-compact dropdown-content rounded-box bg-accent"
+            className="mt-3 p-4 w-80 shadow menu menu-compact dropdown-content rounded-box bg-primary"
           >
             {authLinks.map(({ link, text, badge }) => (
               <li key={link} className="mb-1">
