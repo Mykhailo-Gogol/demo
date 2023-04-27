@@ -15,7 +15,6 @@ export async function getServerSideProps(ctx: any) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  console.log(session);
   const data = await supabase
     .from("text_completions")
     .select("*")
