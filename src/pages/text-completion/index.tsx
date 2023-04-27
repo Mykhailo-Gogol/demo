@@ -2,7 +2,11 @@ import { openai } from "@/api/openapi";
 import { TextCompletionsType } from "@/api/supabase/supabase.types";
 import { User, useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { appConfig } from "@/utils";
-import { faBookmark, faEdit } from "@fortawesome/free-regular-svg-icons";
+import {
+  faBookmark,
+  faEdit,
+  faTrashCan,
+} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FormEvent, useEffect, useState } from "react";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
@@ -109,7 +113,7 @@ export default function App({
         </div>
         <button
           type="submit"
-          className="btn btn-primary disabled:bg-primary"
+          className="btn btn-accent disabled:bg-accent"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -132,14 +136,14 @@ export default function App({
         <div className="flex justify-center md:justify-start max-w-lg">
           <button
             type="submit"
-            className="btn btn-square btn-primary mx-10"
+            className="btn btn-square btn-accent mx-10"
             disabled={Boolean(!prompt || !result)}
           >
             <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
           </button>
           <button
             disabled={Boolean(!prompt && !result)}
-            className="btn btn-square btn-primary mx-10"
+            className="btn btn-square btn-accent mx-10"
             onClick={handleReset}
           >
             <FontAwesomeIcon icon={faEdit} size={appConfig.iconSize} />
@@ -152,8 +156,23 @@ export default function App({
           ? data.data?.map((el) => (
               <div key={el.id} className="card bg-base-100 shadow-xl mb-10">
                 <div className="card-body p-5">
-                  <h2 className="card-title text-primary">{el.title}</h2>
+                  <h2 className="card-title text-accent">{el.title}</h2>
                   <p>{el.completion}</p>
+                  <button
+                    className="btn btn-md btn-square btn-accent self-end mt-2"
+                    onClick={async () => {
+                      const { data, error } = await supabaseClient
+                        .from("text_completions")
+                        .delete()
+                        .eq("id", el.id);
+                      console.log(data, error);
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      size={appConfig.iconSize}
+                    />
+                  </button>
                 </div>
               </div>
             ))

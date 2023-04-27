@@ -29,7 +29,7 @@ export default function Profile({ user }: iProps) {
         </div>
       </div>
       <span className="block mb-5">{user.email}</span>
-      <button onClick={handleLogout} className="btn btn-primary">
+      <button onClick={handleLogout} className="btn btn-accent">
         Logout
       </button>
     </div>
