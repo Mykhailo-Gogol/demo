@@ -8,9 +8,14 @@ export default function Card() {
   return (
     <div className="card rounded-none bg-accent">
       <figure>
-        <Image src={first} className="object-cover" width={500} alt="alt" />
+        <Image
+          src={first}
+          className="object-cover h-32"
+          width={500}
+          alt="alt"
+        />
       </figure>
-      <div className="card-body text-slate-100 shadow-xl">
+      <div className="card-body text-slate-800 shadow-xl">
         <h2 className="card-title">Text Completion!</h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <div className="card-actions justify-end pt-4">
