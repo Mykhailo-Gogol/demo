@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FormEvent, useEffect, useState } from "react";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/router";
+import Image, { ImageProps } from "next/image";
 
 export async function getServerSideProps(ctx: any) {
   const supabase = createServerSupabaseClient(ctx);
@@ -39,7 +40,6 @@ export default function App({
   data: TextCompletionsType;
   user: User;
 }) {
-  // const user = useUser();
   const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const [prompt, setPrompt] = useState("");
@@ -50,17 +50,16 @@ export default function App({
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: prompt,
-        max_tokens: 60,
-        temperature: 1,
+      const res = await openai.createImage({
+        prompt,
+        n: 1,
+        size: "512x512",
       });
 
-      const text: string = res?.data.choices[0].text as string;
+      const url = res?.data.data[0].url;
 
-      if (text) {
-        setResult(text?.replaceAll("\n", ""));
+      if (url) {
+        setResult(url);
       }
     } catch (e) {
       console.error(e);
@@ -72,16 +71,11 @@ export default function App({
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { error } = await supabaseClient
+    const { data, error } = await supabaseClient
       .from("text_completions")
       .insert([{ title: prompt, completion: result, user_id: user?.id }]);
 
     console.log(error);
-  };
-
-  const handleReset = () => {
-    setPrompt("");
-    setResult("");
   };
 
   useEffect(() => {
@@ -115,63 +109,36 @@ export default function App({
         </button>
       </form>
 
-      <form onSubmit={handleSave} className="mb-10">
-        <textarea
-          rows={5}
-          value={result || ""}
-          onChange={(e) => setResult(e.target.value)}
-          placeholder={
-            loading
-              ? "Loading..."
-              : "What`s on your mind? Max answear length is 30 words"
-          }
-          className="textarea textarea-bordered textarea-md w-full max-w-lg mb-10"
-        ></textarea>
+      <div>
+        {loading ? (
+          <span>Loading...</span>
+        ) : result ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 h-80">
+            <Image
+              src={result}
+              className="object-cover h-80 w-full"
+              width={500}
+              height={500}
+              alt="alt"
+            />
+          </div>
+        ) : null}
+      </div>
 
-        <div className="flex justify-center md:justify-start max-w-lg">
-          <button
-            type="submit"
-            className="btn btn-square btn-accent mx-10"
-            disabled={Boolean(!prompt || !result)}
-          >
-            <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
-          </button>
-          <button
-            disabled={Boolean(!prompt && !result)}
-            className="btn btn-square btn-accent mx-10"
-            onClick={handleReset}
-          >
-            <FontAwesomeIcon icon={faEdit} size={appConfig.iconSize} />
-          </button>
-        </div>
-      </form>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data
           ? data.data?.map((el) => (
-              <div key={el.id} className="card bg-base-100 shadow-xl mb-10">
-                <div className="card-body p-5">
-                  <h2 className="card-title text-accent">{el.title}</h2>
-                  <p>{el.completion}</p>
-                  <button
-                    className="btn btn-md btn-square btn-accent self-end mt-2"
-                    onClick={async () => {
-                      const { data, error } = await supabaseClient
-                        .from("text_completions")
-                        .delete()
-                        .eq("id", el.id);
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faTrashCan}
-                      size={appConfig.iconSize}
-                    />
-                  </button>
-                </div>
-              </div>
+             <Image
+                key={el.toString()}
+                src={el}
+                className="object-cover h-80 w-full"
+                width={500}
+                height={500}
+                alt="alt"
+              />
             ))
           : "Loading..."}
-      </div>
+      </div> */}
     </div>
   );
 }
