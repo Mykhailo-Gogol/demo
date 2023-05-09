@@ -81,11 +81,11 @@ export default function App({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  const handleRemove = async (el: any) => {
+  const handleRemove = async (id: number) => {
     const { data, error } = await supabaseClient
       .from("image_generations")
       .delete()
-      .eq("id", el.id);
+      .eq("id", id);
     console.log(error);
   };
 
@@ -106,28 +106,18 @@ export default function App({
         </div>
         <button
           type="submit"
-          className="btn btn-accent disabled:bg-accent"
+          className="btn btn-accent disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
         </button>
       </form>
 
-      <div className="max-w-lg mb-10">
-        <button
-          onClick={handleSave}
-          className="btn btn-square btn-accent"
-          disabled={Boolean(!result)}
-        >
-          <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
-        </button>
-      </div>
-
-      <div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
         {loading ? (
           <span>Loading...</span>
         ) : result ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div>
             <Image
               src={result}
               className="object-cover h-80 w-full"
@@ -136,13 +126,25 @@ export default function App({
               alt="alt"
             />
           </div>
-        ) : null}
+        ) : (
+          <span>Write a prompt and submit to generate an image</span>
+        )}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="max-w-lg mb-10">
+        <button
+          onClick={handleSave}
+          className="btn btn-accent disabled:cursor-not-allowed"
+          disabled={Boolean(!result)}
+        >
+          <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
+        </button>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {data
           ? data.data?.map((el) => (
-              <div className="card-body p-5" key={el.created_at}>
+              <div className="card-body p-0" key={el.created_at}>
                 <Image
                   src={el.image_url || ""}
                   className="object-cover h-80 w-full"
@@ -150,16 +152,19 @@ export default function App({
                   height={500}
                   alt={el.title || ""}
                 />
+
                 <h2 className="card-title font-light">{el.title}</h2>
-                <button
-                  className="btn btn-md btn-square btn-accent self-end mt-2"
-                  onClick={() => handleRemove(el.id)}
-                >
-                  <FontAwesomeIcon
-                    icon={faTrashCan}
-                    size={appConfig.iconSize}
-                  />
-                </button>
+                <div className="flex justify-end">
+                  <button
+                    className="btn btn-md btn-square btn-accent mt-2"
+                    onClick={() => handleRemove(el.id)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      size={appConfig.iconSize}
+                    />
+                  </button>
+                </div>
               </div>
             ))
           : "Loading..."}

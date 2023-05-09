@@ -4,6 +4,7 @@ import { User, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { appConfig } from "@/utils";
 import {
   faBookmark,
+  faCopy,
   faEdit,
   faTrashCan,
 } from "@fortawesome/free-regular-svg-icons";
@@ -79,9 +80,18 @@ export default function App({
     console.log(error);
   };
 
-  const handleReset = () => {
-    setPrompt("");
-    setResult("");
+  const handleCopy = () => {
+    navigator.clipboard.writeText(result);
+    alert("😎 Copied");
+  };
+
+  const handleRemove = async (id: number) => {
+    const { data, error } = await supabaseClient
+      .from("text_completions")
+      .delete()
+      .eq("id", id);
+
+    console.log(error);
   };
 
   useEffect(() => {
@@ -108,7 +118,7 @@ export default function App({
         </div>
         <button
           type="submit"
-          className="btn btn-accent disabled:bg-accent"
+          className="btn btn-accent disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -128,7 +138,7 @@ export default function App({
           className="textarea textarea-bordered textarea-md w-full max-w-lg mb-10"
         ></textarea>
 
-        <div className="flex justify-center md:justify-start max-w-lg">
+        <div className="flex justify-evenly md:justify-start max-w-lg">
           <button
             type="submit"
             className="btn btn-square btn-accent mx-10"
@@ -137,30 +147,25 @@ export default function App({
             <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
           </button>
           <button
-            disabled={Boolean(!prompt && !result)}
+            disabled={Boolean(!result)}
             className="btn btn-square btn-accent mx-10"
-            onClick={handleReset}
+            onClick={handleCopy}
           >
-            <FontAwesomeIcon icon={faEdit} size={appConfig.iconSize} />
+            <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />
           </button>
         </div>
       </form>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {data
           ? data.data?.map((el) => (
-              <div key={el.id} className="card bg-base-100 shadow-xl mb-10">
+              <div key={el.id} className="card shadow-lg mb-10">
                 <div className="card-body p-5">
                   <h2 className="card-title text-accent">{el.title}</h2>
                   <p>{el.completion}</p>
                   <button
                     className="btn btn-md btn-square btn-accent self-end mt-2"
-                    onClick={async () => {
-                      const { data, error } = await supabaseClient
-                        .from("text_completions")
-                        .delete()
-                        .eq("id", el.id);
-                    }}
+                    onClick={() => handleRemove(el.id)}
                   >
                     <FontAwesomeIcon
                       icon={faTrashCan}
