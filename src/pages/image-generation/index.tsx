@@ -1,17 +1,13 @@
 import { openai } from "@/api/openapi";
-import { TextCompletionsType } from "@/api/supabase/supabase.types";
+import { ImageGenerationsType } from "@/api/supabase/supabase.types";
 import { User, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { appConfig } from "@/utils";
-import {
-  faBookmark,
-  faEdit,
-  faTrashCan,
-} from "@fortawesome/free-regular-svg-icons";
+import { faBookmark, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FormEvent, useEffect, useState } from "react";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/router";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 
 export async function getServerSideProps(ctx: any) {
   const supabase = createServerSupabaseClient(ctx);
@@ -21,7 +17,7 @@ export async function getServerSideProps(ctx: any) {
   } = await supabase.auth.getSession();
 
   const data = await supabase
-    .from("text_completions")
+    .from("image_generations")
     .select("*")
     .eq("user_id", session?.user.id);
 
@@ -37,7 +33,7 @@ export default function App({
   data,
   user,
 }: {
-  data: TextCompletionsType;
+  data: ImageGenerationsType;
   user: User;
 }) {
   const router = useRouter();
@@ -72,10 +68,10 @@ export default function App({
     e.preventDefault();
 
     const { data, error } = await supabaseClient
-      .from("text_completions")
-      .insert([{ title: prompt, completion: result, user_id: user?.id }]);
+      .from("image_generations")
+      .insert([{ title: prompt, image_url: result, user_id: user?.id }]);
 
-    console.log(error);
+    console.log(data, error);
   };
 
   useEffect(() => {
@@ -84,6 +80,14 @@ export default function App({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  const handleRemove = async (el: any) => {
+    const { data, error } = await supabaseClient
+      .from("image_generations")
+      .delete()
+      .eq("id", el.id);
+    console.log(error);
+  };
 
   return (
     <div className="mb-10">
@@ -109,11 +113,21 @@ export default function App({
         </button>
       </form>
 
+      <div className="max-w-lg mb-10">
+        <button
+          onClick={handleSave}
+          className="btn btn-square btn-accent"
+          disabled={Boolean(!result)}
+        >
+          <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
+        </button>
+      </div>
+
       <div>
         {loading ? (
           <span>Loading...</span>
         ) : result ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 h-80">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Image
               src={result}
               className="object-cover h-80 w-full"
@@ -125,20 +139,31 @@ export default function App({
         ) : null}
       </div>
 
-      {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data
           ? data.data?.map((el) => (
-             <Image
-                key={el.toString()}
-                src={el}
-                className="object-cover h-80 w-full"
-                width={500}
-                height={500}
-                alt="alt"
-              />
+              <div className="card-body p-5" key={el.created_at}>
+                <Image
+                  src={el.image_url || ""}
+                  className="object-cover h-80 w-full"
+                  width={500}
+                  height={500}
+                  alt={el.title || ""}
+                />
+                <h2 className="card-title font-light">{el.title}</h2>
+                <button
+                  className="btn btn-md btn-square btn-accent self-end mt-2"
+                  onClick={() => handleRemove(el.id)}
+                >
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    size={appConfig.iconSize}
+                  />
+                </button>
+              </div>
             ))
           : "Loading..."}
-      </div> */}
+      </div>
     </div>
   );
 }

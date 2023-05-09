@@ -10,7 +10,7 @@ export default function AppComponent() {
         src={third}
         title="Text Completion!"
         subtitle="If a dog chews shoes whose shoes does he choose?"
-        callToActionText="Let`s go"
+        callToActionText="Let`s try"
         href="/text-completion"
       />
 
@@ -18,7 +18,7 @@ export default function AppComponent() {
         src={fourth}
         title="Image Generation!"
         subtitle="A white siamese cat"
-        callToActionText="Let`s go"
+        callToActionText="Let`s try"
         href="/image-generation"
       />
     </div>
