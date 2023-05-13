@@ -6,7 +6,7 @@ import { ImageProps } from "next/image";
 
 interface iProps {
   src: ImageProps["src"];
-  href: string;
+  slug: string;
   title: string;
   subtitle: string;
   callToActionText: string;
@@ -14,7 +14,7 @@ interface iProps {
 
 export default function Card({
   src,
-  href,
+  slug,
   title,
   subtitle,
   callToActionText,
@@ -33,7 +33,7 @@ export default function Card({
         <h2 className="card-title">{title}</h2>
         <p>{subtitle}</p>
         <div className="card-actions justify-end pt-4">
-          <Link href={href} className="btn btn-accent">
+          <Link href={"/" + slug} className="btn btn-accent">
             {callToActionText}
           </Link>
         </div>

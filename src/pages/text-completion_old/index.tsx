@@ -61,7 +61,7 @@ export default function App({
       const text: string = res?.data.choices[0].text as string;
 
       if (text) {
-        setResult(text?.replaceAll("\n", ""));
+        setResult(text);
       }
     } catch (e) {
       console.error(e);
