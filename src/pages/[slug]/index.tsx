@@ -89,7 +89,7 @@ export default function PageByHref({
 
   return (
     <div className="mb-10">
-      <div className="mb-10 h-5 bg-green-200" />
+      <div className="mb-10 h-4 rounded-md bg-accent" />
       <form onSubmit={handleSubmit} className="mb-10">
         <div className="form-control w-full max-w-lg mb-5">
           <label className="label mb-5">
@@ -115,33 +115,30 @@ export default function PageByHref({
       <form onSubmit={() => {}} className="mb-10">
         <textarea
           rows={5}
-          value={result || ""}
+          value={result.replace("?", "") || ""}
           onChange={(e) => setResult(e.target.value)}
           placeholder={
-            loading
-              ? "Loading..."
-              : "What`s on your mind? Max answear length is 30 words"
+            loading ? "Loading..." : "Max answear length is 30 words"
           }
           className="textarea textarea-bordered textarea-md w-full max-w-lg mb-10"
         ></textarea>
-
-        <div className="flex justify-evenly md:justify-start max-w-lg">
-          {/* <button
+      </form>
+      <div className="flex justify-evenly md:justify-start max-w-lg">
+        {/* <button
             type="submit"
             className="btn btn-square btn-accent mx-10"
             disabled={Boolean(!prompt || !result)}
           >
             <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
           </button> */}
-          <button
-            disabled={Boolean(!result)}
-            className="btn btn-square btn-accent"
-            onClick={handleCopy}
-          >
-            <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />
-          </button>
-        </div>
-      </form>
+        <button
+          disabled={Boolean(!result)}
+          className="btn btn-square btn-accent"
+          onClick={handleCopy}
+        >
+          <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />
+        </button>
+      </div>
     </div>
   );
 }

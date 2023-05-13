@@ -3,27 +3,26 @@ import { FeatureType } from "./types";
 
 import first from "@/static/cards/first.jpg";
 import second from "@/static/cards/second.jpg";
-// import third from "@/static/carousel/third.jpg";
-// import fourth from "@/static/carousel/fourth.jpg";
+import third from "@/static/cards/third.jpg";
+// import fourth from "@/static/cards/fourth.jpg";
 // import fifth from "@/static/cards/fourth.jpg";
 
 export const features: FeatureType[] = [
   {
     src: first,
-    slug: "questions_and_answears",
-    tags: ["Answers", "Generation", "Conversation"],
-    title: "Q&A",
-    subtitle: "Answer questions based on existing knowledge.",
+    slug: "summarization",
+    tags: ["Transformation", "Generation"],
+    title: "TL;DR summarization",
+    subtitle: "Summarize text ",
     callToActionText: "Let`s try",
-    label:
-      'I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with "Unknown".',
+    label: "Summarize text:",
     settings: {
       model: "text-davinci-003",
-      temperature: 0,
-      max_tokens: 100,
-      top_p: 1,
+      temperature: 0.7,
+      max_tokens: 60,
+      top_p: 1.0,
       frequency_penalty: 0.0,
-      presence_penalty: 0.0,
+      presence_penalty: 1,
     },
   },
   {
@@ -39,6 +38,25 @@ export const features: FeatureType[] = [
       temperature: 0,
       max_tokens: 60,
       top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+    },
+  },
+
+  {
+    src: third,
+    slug: "questions_and_answears",
+    tags: ["Answers", "Generation", "Conversation"],
+    title: "Q&A",
+    subtitle: "Answer questions based on existing knowledge.",
+    callToActionText: "Let`s try",
+    label:
+      'I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with "Unknown".',
+    settings: {
+      model: "text-davinci-003",
+      temperature: 0,
+      max_tokens: 100,
+      top_p: 1,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
     },
