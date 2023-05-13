@@ -77,7 +77,7 @@ export default function PageByHref({
 
   const handleCopy = () => {
     navigator.clipboard.writeText(result);
-    alert("😎 Copied");
+    alert(`😎 ${result}`);
   };
 
   useEffect(() => {
@@ -115,12 +115,12 @@ export default function PageByHref({
       <form onSubmit={() => {}} className="mb-10">
         <textarea
           rows={5}
-          value={result.replace("?", "") || ""}
+          value={result}
           onChange={(e) => setResult(e.target.value)}
           placeholder={
             loading ? "Loading..." : "Max answear length is 30 words"
           }
-          className="textarea textarea-bordered textarea-md w-full max-w-lg mb-10"
+          className="textarea textarea-bordered textarea-md w-full max-w-lg"
         ></textarea>
       </form>
       <div className="flex justify-evenly md:justify-start max-w-lg">

@@ -10,23 +10,6 @@ import third from "@/static/cards/third.jpg";
 export const features: FeatureType[] = [
   {
     src: first,
-    slug: "summarization",
-    tags: ["Transformation", "Generation"],
-    title: "TL;DR summarization",
-    subtitle: "Summarize text ",
-    callToActionText: "Let`s try",
-    label: "Summarize text:",
-    settings: {
-      model: "text-davinci-003",
-      temperature: 0.7,
-      max_tokens: 60,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 1,
-    },
-  },
-  {
-    src: second,
     slug: "grammar_correction",
     tags: ["Transformation", "Generation"],
     title: "Grammar correction",
@@ -44,7 +27,7 @@ export const features: FeatureType[] = [
   },
 
   {
-    src: third,
+    src: second,
     slug: "questions_and_answears",
     tags: ["Answers", "Generation", "Conversation"],
     title: "Q&A",
@@ -59,6 +42,23 @@ export const features: FeatureType[] = [
       top_p: 1,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
+    },
+  },
+  {
+    src: third,
+    slug: "summarization",
+    tags: ["Transformation", "Generation"],
+    title: "TL;DR summarization",
+    subtitle: "Summarize your very long text into a short summary.",
+    callToActionText: "Let`s try",
+    label: "Summarize text:",
+    settings: {
+      model: "text-davinci-003",
+      temperature: 0.7,
+      max_tokens: 60,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 1,
     },
   },
 ];
