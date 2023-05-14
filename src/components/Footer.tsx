@@ -60,6 +60,17 @@ export default function Footer() {
       </div>
       <div>
         <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+        <p>
+          Pet project powered by
+          <a
+            className="underline mx-1"
+            target="_blank"
+            href="https://openai.com/blog/openai-api"
+          >
+            Open AI
+          </a>
+          API
+        </p>
       </div>
     </footer>
   );

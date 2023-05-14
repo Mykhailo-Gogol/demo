@@ -1,7 +1,5 @@
 import { ImageProps } from "next/image";
 
-type StopType = "\n" | ".";
-
 export interface FeatureType {
   src: ImageProps["src"];
   slug: string;
@@ -18,6 +16,6 @@ export interface FeatureType {
     top_p: number;
     frequency_penalty: number;
     presence_penalty: number;
-    stop?: StopType[];
+    stop?: string[];
   };
 }
