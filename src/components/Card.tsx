@@ -25,35 +25,32 @@ export default function Card({
         />
       </figure>
       <div
-        className={`card-body shadow-xl p-4 transition-all ease-out duration-500 ${
-          previewMode ? 'flex flex-row justify-between items-center' : ''
+        className={`card-body shadow-xl p-4 ${
+          previewMode
+            ? 'flex flex-row flex-wrap justify-between items-center'
+            : ''
         }`}
       >
-        <div>
+        <div className="flex-1">
           <h2 className="card-title">{title}</h2>
-          <p
-            className={`transition-all ease-out duration-500 ${
-              previewMode ? 'h-0 opacity-0' : ''
-            }`}
-          >
-            {subtitle}
-          </p>
-          <div className="-ml-2 pt-2 flex items-center">
-            {tags.map((item, i) => (
-              <div
-                key={[item, i].join('-')}
-                className="badge badge-ghost opacity-50 mr-2"
-              >
-                {item}
+          {!previewMode && (
+            <>
+              <p>{subtitle}</p>
+              <div className="-ml-2 pt-2 flex items-center">
+                {tags.map((item, i) => (
+                  <div
+                    key={[item, i].join('-')}
+                    className="badge badge-ghost opacity-50 mr-2"
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
 
-        <Link
-          href={'/' + slug}
-          className={`ml-auto btn btn-accent ${previewMode ? '' : ''}`}
-        >
+        <Link href={'/' + slug} className="ml-auto btn btn-accent">
           {callToActionText}
         </Link>
       </div>

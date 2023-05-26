@@ -11,11 +11,9 @@ import {
 export default function AppComponent() {
   const [previewMode, setPreviewMode] = useState(false)
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
       <button
-        className={`${
-          previewMode ? 'min-h-[5rem]' : 'min-h-[8rem]'
-        } active:bg-primary transition-all ease-out duration-500`}
+        className="min-h-[5rem] active:bg-primary transition-all ease-out duration-500"
         onClick={() => setPreviewMode(!previewMode)}
       >
         <FontAwesomeIcon

@@ -1,38 +1,38 @@
-import React from "react";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
-import { appConfig } from "@/utils";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import React from 'react'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
+import { appConfig } from '@/utils'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 
 export default function Header() {
-  const user = useUser();
-  const supabaseClient = useSupabaseClient();
+  const user = useUser()
+  const supabaseClient = useSupabaseClient()
 
   const handleLogout = async () => {
     try {
-      const res = confirm("Are you sure?");
+      const res = confirm('Are you sure?')
       if (res) {
-        await supabaseClient.auth.signOut();
+        await supabaseClient.auth.signOut()
       }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
 
   const authLinks = [
-    { link: "/", text: user ? "App" : "Welcome", badge: user ? true : false },
+    { link: '/', text: user ? 'App' : 'Welcome', badge: user ? true : false },
     {
-      link: "/profile",
-      text: user ? "Profile" : "Login",
+      link: '/profile',
+      text: user ? 'Profile' : 'Login',
       badge: user ? false : true,
     },
-  ];
+  ]
 
   return (
     <header className="navbar pt-5 px-3">
       <div className="flex-1">
-        <Link href={"/"} className="btn btn-accent p-2 w-12 lg:w-20">
+        <Link href={'/'} className="btn btn-accent p-2 w-12 lg:w-20">
           <FontAwesomeIcon icon={faHeart} size={appConfig.iconSize} />
         </Link>
       </div>
@@ -45,7 +45,7 @@ export default function Header() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-accent p-2 w-12 lg:w-20">
+          <label tabIndex={0} className="btn btn-primary p-2 w-12 lg:w-20">
             <div>
               <FontAwesomeIcon icon={faUser} size={appConfig.iconSize} />
             </div>
@@ -74,5 +74,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  );
+  )
 }

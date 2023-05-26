@@ -260,7 +260,6 @@ export const themes = {
   coffee: 'coffee',
   winter: 'winter',
 }
-const hello = 1
 
 interface AppConfigType {
   iconSize: FontAwesomeIconProps['size']
@@ -269,5 +268,5 @@ interface AppConfigType {
 
 export const appConfig: AppConfigType = {
   iconSize: 'xl',
-  defaultTheme: themes.pastel,
+  defaultTheme: themes.cyberpunk,
 }
