@@ -31,7 +31,7 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export default function PageByHref({
+export default function PageBySlug({
   featureData,
 }: {
   featureData: FeatureType;

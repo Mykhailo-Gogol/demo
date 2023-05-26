@@ -1,105 +1,104 @@
-import { openai } from "@/api/openapi";
-import { TextCompletionsType } from "@/api/supabase/supabase.types";
-import { User, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { appConfig } from "@/utils";
+import { openai } from '@/api/openapi'
+import { TextCompletionsType } from '@/api/supabase/supabase.types'
+import { User, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { appConfig } from '@/utils'
 import {
   faBookmark,
   faCopy,
-  faEdit,
   faTrashCan,
-} from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FormEvent, useEffect, useState } from "react";
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/router";
+} from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/router'
 
 export async function getServerSideProps(ctx: any) {
-  const supabase = createServerSupabaseClient(ctx);
+  const supabase = createServerSupabaseClient(ctx)
 
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await supabase.auth.getSession()
 
   const data = await supabase
-    .from("text_completions")
-    .select("*")
-    .eq("user_id", session?.user.id);
+    .from('text_completions')
+    .select('*')
+    .eq('user_id', session?.user.id)
 
   return {
     props: {
       data,
       user: session?.user || null,
     },
-  };
+  }
 }
 
 export default function App({
   data,
   user,
 }: {
-  data: TextCompletionsType;
-  user: User;
+  data: TextCompletionsType
+  user: User
 }) {
   // const user = useUser();
-  const router = useRouter();
-  const supabaseClient = useSupabaseClient();
-  const [prompt, setPrompt] = useState("");
-  const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+  const supabaseClient = useSupabaseClient()
+  const [prompt, setPrompt] = useState('')
+  const [result, setResult] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
     try {
       const res = await openai.createCompletion({
-        model: "text-davinci-003",
+        model: 'text-davinci-003',
         prompt: prompt,
         max_tokens: 60,
         temperature: 1,
-      });
+      })
 
-      const text: string = res?.data.choices[0].text as string;
+      const text: string = res?.data.choices[0].text as string
 
       if (text) {
-        setResult(text);
+        setResult(text)
       }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleSave = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const { error } = await supabaseClient
-      .from("text_completions")
-      .insert([{ title: prompt, completion: result, user_id: user?.id }]);
+      .from('text_completions')
+      .insert([{ title: prompt, completion: result, user_id: user?.id }])
 
-    console.log(error);
-  };
+    console.log(error)
+  }
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(result);
-    alert("😎 Copied");
-  };
+    navigator.clipboard.writeText(result)
+    alert('😎 Copied')
+  }
 
   const handleRemove = async (id: number) => {
     const { data, error } = await supabaseClient
-      .from("text_completions")
+      .from('text_completions')
       .delete()
-      .eq("id", id);
+      .eq('id', id)
 
-    console.log(error);
-  };
+    console.log(error)
+  }
 
   useEffect(() => {
     if (!user) {
-      router.push("/");
+      router.push('/')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user])
 
   return (
     <div className="mb-10">
@@ -128,12 +127,12 @@ export default function App({
       <form onSubmit={handleSave} className="mb-10">
         <textarea
           rows={5}
-          value={result || ""}
+          value={result || ''}
           onChange={(e) => setResult(e.target.value)}
           placeholder={
             loading
-              ? "Loading..."
-              : "What`s on your mind? Max answear length is 30 words"
+              ? 'Loading...'
+              : 'What`s on your mind? Max answear length is 30 words'
           }
           className="textarea textarea-bordered textarea-md w-full max-w-lg mb-10"
         ></textarea>
@@ -144,7 +143,7 @@ export default function App({
             className="btn btn-square btn-accent mx-10"
             disabled={Boolean(!prompt || !result)}
           >
-            <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
+            {/* <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} /> */}
           </button>
           <button
             disabled={Boolean(!result)}
@@ -175,8 +174,8 @@ export default function App({
                 </div>
               </div>
             ))
-          : "Loading..."}
+          : 'Loading...'}
       </div>
     </div>
-  );
+  )
 }
