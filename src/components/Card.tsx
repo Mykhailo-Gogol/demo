@@ -24,30 +24,38 @@ export default function Card({
           alt="alt"
         />
       </figure>
-      <div className="card-body shadow-xl p-4">
-        <h2 className="card-title">{title}</h2>
-        <p
-          className={`transition-all ease-out duration-500 ${
-            previewMode ? 'h-0 opacity-0' : ''
-          }`}
+      <div
+        className={`card-body shadow-xl p-4 transition-all ease-out duration-500 ${
+          previewMode ? 'flex flex-row justify-between items-center' : ''
+        }`}
+      >
+        <div>
+          <h2 className="card-title">{title}</h2>
+          <p
+            className={`transition-all ease-out duration-500 ${
+              previewMode ? 'h-0 opacity-0' : ''
+            }`}
+          >
+            {subtitle}
+          </p>
+          <div className="-ml-2 pt-2 flex items-center">
+            {tags.map((item, i) => (
+              <div
+                key={[item, i].join('-')}
+                className="badge badge-ghost opacity-50 mr-2"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Link
+          href={'/' + slug}
+          className={`ml-auto btn btn-accent ${previewMode ? '' : ''}`}
         >
-          {subtitle}
-        </p>
-        <div className="-ml-2 pt-2 flex items-center">
-          {tags.map((item, i) => (
-            <div
-              key={[item, i].join('-')}
-              className="badge badge-ghost opacity-50 mr-2"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-        <div className="card-actions justify-end pt-2">
-          <Link href={'/' + slug} className="btn btn-accent">
-            {callToActionText}
-          </Link>
-        </div>
+          {callToActionText}
+        </Link>
       </div>
     </div>
   )

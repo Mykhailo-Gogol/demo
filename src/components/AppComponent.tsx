@@ -13,7 +13,9 @@ export default function AppComponent() {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
       <button
-        className="hover:bg-secondary transition-all ease-out duration-500"
+        className={`${
+          previewMode ? 'min-h-[5rem]' : 'min-h-[8rem]'
+        } active:bg-primary transition-all ease-out duration-500`}
         onClick={() => setPreviewMode(!previewMode)}
       >
         <FontAwesomeIcon
