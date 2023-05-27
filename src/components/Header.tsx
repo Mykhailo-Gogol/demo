@@ -30,7 +30,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="navbar pt-5 px-0">
+    <header className="navbar pt-5 px-3">
       <div className="flex-1">
         <Link href={'/'} className="btn btn-secondary p-2 w-12 lg:w-20">
           <FontAwesomeIcon icon={faHeart} size={appConfig.iconSize} />
