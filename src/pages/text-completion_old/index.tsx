@@ -2,11 +2,7 @@ import { openai } from '@/api/openapi'
 import { TextCompletionsType } from '@/api/supabase/supabase.types'
 import { User, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { appConfig } from '@/utils'
-import {
-  faBookmark,
-  faCopy,
-  faTrashCan,
-} from '@fortawesome/free-regular-svg-icons'
+import { faCopy, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
@@ -85,7 +81,7 @@ export default function App({
   }
 
   const handleRemove = async (id: number) => {
-    const { data, error } = await supabaseClient
+    const { error } = await supabaseClient
       .from('text_completions')
       .delete()
       .eq('id', id)
@@ -117,7 +113,7 @@ export default function App({
         </div>
         <button
           type="submit"
-          className="btn btn-accent disabled:cursor-not-allowed"
+          className="btn btn-secondary disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -140,14 +136,14 @@ export default function App({
         <div className="flex justify-evenly md:justify-start max-w-lg">
           <button
             type="submit"
-            className="btn btn-square btn-accent mx-10"
+            className="btn btn-square btn-secondary mx-10"
             disabled={Boolean(!prompt || !result)}
           >
             {/* <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} /> */}
           </button>
           <button
             disabled={Boolean(!result)}
-            className="btn btn-square btn-accent mx-10"
+            className="btn btn-square btn-secondary mx-10"
             onClick={handleCopy}
           >
             <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />
@@ -160,10 +156,10 @@ export default function App({
           ? data.data?.map((el) => (
               <div key={el.id} className="card shadow-lg mb-10">
                 <div className="card-body p-5">
-                  <h2 className="card-title text-accent">{el.title}</h2>
+                  <h2 className="card-title text-secondary">{el.title}</h2>
                   <p>{el.completion}</p>
                   <button
-                    className="btn btn-md btn-square btn-accent self-end mt-2"
+                    className="btn btn-md btn-square btn-secondary self-end mt-2"
                     onClick={() => handleRemove(el.id)}
                   >
                     <FontAwesomeIcon

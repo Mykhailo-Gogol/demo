@@ -13,7 +13,7 @@ export default function AppComponent() {
   return (
     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
       <button
-        className="min-h-[5rem] active:bg-primary transition-all ease-out duration-500"
+        className="min-h-[5rem] active:bg-secondary transition-all ease-out duration-500"
         onClick={() => setPreviewMode(!previewMode)}
       >
         <FontAwesomeIcon

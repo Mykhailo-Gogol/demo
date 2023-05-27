@@ -1,24 +1,24 @@
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { User } from "@supabase/supabase-js";
-import React from "react";
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { User } from '@supabase/supabase-js'
+import React from 'react'
 
 interface iProps {
-  user: User;
+  user: User
 }
 
 export default function Profile({ user }: iProps) {
-  const supabaseClient = useSupabaseClient();
+  const supabaseClient = useSupabaseClient()
 
   const handleLogout = async () => {
     try {
-      const res = confirm("Are you sure?");
+      const res = confirm('Are you sure?')
       if (res) {
-        await supabaseClient.auth.signOut();
+        await supabaseClient.auth.signOut()
       }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
   return (
     <div className="flex flex-col items-center">
       <div className="avatar online placeholder mb-5">
@@ -29,9 +29,9 @@ export default function Profile({ user }: iProps) {
         </div>
       </div>
       <span className="block mb-5">{user.email}</span>
-      <button onClick={handleLogout} className="btn btn-accent">
+      <button onClick={handleLogout} className="btn btn-secondary">
         Logout
       </button>
     </div>
-  );
+  )
 }

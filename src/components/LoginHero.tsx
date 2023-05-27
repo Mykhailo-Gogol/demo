@@ -1,29 +1,29 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { appConfig } from "@/utils";
+import React, { ChangeEvent, FormEvent, useState } from 'react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { appConfig } from '@/utils'
 
 interface iProps {
-  title: string;
+  title: string
 }
 
 export default function LoginHero({ title }: iProps) {
-  const user = useUser();
-  const supabaseClient = useSupabaseClient();
+  const user = useUser()
+  const supabaseClient = useSupabaseClient()
 
   const [form, setForm] = useState({
-    email: "",
-  });
-  const [submited, setSubmited] = useState(false);
+    email: '',
+  })
+  const [submited, setSubmited] = useState(false)
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  };
+    setForm({ ...form, [event.target.name]: event.target.value })
+  }
 
   const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    setSubmited(true);
+    event.preventDefault()
+    setSubmited(true)
 
     try {
       await supabaseClient.auth.signInWithOtp({
@@ -31,11 +31,11 @@ export default function LoginHero({ title }: iProps) {
         options: {
           emailRedirectTo: process.env.NEXT_PUBLIC_REDIRECT_URL,
         },
-      });
+      })
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
 
   return (
     <div className="hero mb-10">
@@ -71,8 +71,8 @@ export default function LoginHero({ title }: iProps) {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className={`btn btn-accent disabled:bg-accent ${
-                    !Boolean(form.email) ? "disabled" : ""
+                  className={`btn btn-secondary disabled:bg-secondary ${
+                    !Boolean(form.email) ? 'disabled' : ''
                   }`}
                   disabled={!Boolean(form.email)}
                 >
@@ -84,5 +84,5 @@ export default function LoginHero({ title }: iProps) {
         )}
       </div>
     </div>
-  );
+  )
 }

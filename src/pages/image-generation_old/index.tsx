@@ -1,93 +1,93 @@
-import { openai } from "@/api/openapi";
-import { ImageGenerationsType } from "@/api/supabase/supabase.types";
-import { User, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { appConfig } from "@/utils";
-import { faBookmark, faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FormEvent, useEffect, useState } from "react";
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/router";
-import Image from "next/image";
+import { openai } from '@/api/openapi'
+import { ImageGenerationsType } from '@/api/supabase/supabase.types'
+import { User, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { appConfig } from '@/utils'
+import { faBookmark, faTrashCan } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 export async function getServerSideProps(ctx: any) {
-  const supabase = createServerSupabaseClient(ctx);
+  const supabase = createServerSupabaseClient(ctx)
 
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await supabase.auth.getSession()
 
   const data = await supabase
-    .from("image_generations")
-    .select("*")
-    .eq("user_id", session?.user.id);
+    .from('image_generations')
+    .select('*')
+    .eq('user_id', session?.user.id)
 
   return {
     props: {
       data,
       user: session?.user || null,
     },
-  };
+  }
 }
 
 export default function App({
   data,
   user,
 }: {
-  data: ImageGenerationsType;
-  user: User;
+  data: ImageGenerationsType
+  user: User
 }) {
-  const router = useRouter();
-  const supabaseClient = useSupabaseClient();
-  const [prompt, setPrompt] = useState("");
-  const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+  const supabaseClient = useSupabaseClient()
+  const [prompt, setPrompt] = useState('')
+  const [result, setResult] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
     try {
       const res = await openai.createImage({
         prompt,
         n: 1,
-        size: "512x512",
-      });
+        size: '512x512',
+      })
 
-      const url = res?.data.data[0].url;
+      const url = res?.data.data[0].url
 
       if (url) {
-        setResult(url);
+        setResult(url)
       }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleSave = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const { data, error } = await supabaseClient
-      .from("image_generations")
-      .insert([{ title: prompt, image_url: result, user_id: user?.id }]);
+      .from('image_generations')
+      .insert([{ title: prompt, image_url: result, user_id: user?.id }])
 
-    console.log(data, error);
-  };
+    console.log(data, error)
+  }
 
   useEffect(() => {
     if (!user) {
-      router.push("/");
+      router.push('/')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user])
 
   const handleRemove = async (id: number) => {
-    const { data, error } = await supabaseClient
-      .from("image_generations")
+    const { error } = await supabaseClient
+      .from('image_generations')
       .delete()
-      .eq("id", id);
-    console.log(error);
-  };
+      .eq('id', id)
+    console.log(error)
+  }
 
   return (
     <div className="mb-10">
@@ -106,7 +106,7 @@ export default function App({
         </div>
         <button
           type="submit"
-          className="btn btn-accent disabled:cursor-not-allowed"
+          className="btn btn-secondary disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -134,7 +134,7 @@ export default function App({
       <div className="max-w-lg mb-10">
         <button
           onClick={handleSave}
-          className="btn btn-accent disabled:cursor-not-allowed"
+          className="btn btn-secondary disabled:cursor-not-allowed"
           disabled={Boolean(!result)}
         >
           <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
@@ -146,17 +146,17 @@ export default function App({
           ? data.data?.map((el) => (
               <div className="card-body p-0" key={el.created_at}>
                 <Image
-                  src={el.image_url || ""}
+                  src={el.image_url || ''}
                   className="object-cover h-80 w-full"
                   width={500}
                   height={500}
-                  alt={el.title || ""}
+                  alt={el.title || ''}
                 />
 
                 <h2 className="card-title font-light">{el.title}</h2>
                 <div className="flex justify-end">
                   <button
-                    className="btn btn-md btn-square btn-accent mt-2"
+                    className="btn btn-md btn-square btn-secondary mt-2"
                     onClick={() => handleRemove(el.id)}
                   >
                     <FontAwesomeIcon
@@ -167,8 +167,8 @@ export default function App({
                 </div>
               </div>
             ))
-          : "Loading..."}
+          : 'Loading...'}
       </div>
     </div>
-  );
+  )
 }
