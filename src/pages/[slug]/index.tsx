@@ -7,6 +7,8 @@ import { openai } from '@/api/openapi'
 import { FeatureType } from '@/utils/types'
 import { useUser } from '@supabase/auth-helpers-react'
 
+const colorRegex = '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})'
+
 export function getStaticPaths() {
   const paths = features.map(({ slug }) => ({
     params: {
@@ -42,6 +44,7 @@ export default function PageBySlug({
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState('')
   const [loading, setLoading] = useState(false)
+  const [color, setColor] = useState<string | undefined>()
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -55,7 +58,10 @@ export default function PageBySlug({
       const text: string = res?.data.choices[0].text as string
 
       if (text) {
-        setResult(text.replaceAll('\n', ''))
+        setResult(text.replaceAll('\n', ' '))
+        if (text.match(colorRegex)) {
+          setColor(text.match(colorRegex)?.[0])
+        }
       }
       console.log(res)
     } catch (e) {
@@ -75,9 +81,13 @@ export default function PageBySlug({
   //   console.log(error);
   // };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(result)
-    alert(`😎 ${result}`)
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(result)
+      alert(`😎 ${result}`)
+    } catch (e) {
+      alert(`🎃 something went wrong`)
+    }
   }
 
   useEffect(() => {
@@ -89,7 +99,11 @@ export default function PageBySlug({
 
   return (
     <div className="mb-10">
-      <div className="mb-10 h-4 rounded-md bg-secondary" />
+      <p className="pb-5 fot-medium">{featureData.subtitle}</p>
+      <div
+        className="mb-10 h-4 rounded-md bg-secondary"
+        style={{ backgroundColor: color }}
+      />
       <form onSubmit={handleSubmit} className="mb-10">
         <div className="form-control w-full max-w-lg mb-5">
           <label className="label mb-5">
@@ -113,7 +127,6 @@ export default function PageBySlug({
           Submit
         </button>
       </form>
-
       <form onSubmit={() => {}} className="mb-10">
         <textarea
           rows={5}

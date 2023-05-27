@@ -128,7 +128,7 @@ export const features: FeatureType[] = [
     title: 'Mood to color',
     subtitle: 'Turn a text description into a color.',
     callToActionText: 'Begin',
-    label: 'The CSS code for a color in hex like a:',
+    label: 'Generate CSS code for a color in hex like a:',
     settings: {
       model: 'text-davinci-003',
       max_tokens: 60,
