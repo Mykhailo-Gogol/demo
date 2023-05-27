@@ -106,7 +106,7 @@ export default function App({
         </div>
         <button
           type="submit"
-          className="btn btn-secondary disabled:cursor-not-allowed"
+          className="btn btn-accent disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -134,7 +134,7 @@ export default function App({
       <div className="max-w-lg mb-10">
         <button
           onClick={handleSave}
-          className="btn btn-secondary disabled:cursor-not-allowed"
+          className="btn btn-accent disabled:cursor-not-allowed"
           disabled={Boolean(!result)}
         >
           <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
@@ -156,7 +156,7 @@ export default function App({
                 <h2 className="card-title font-light">{el.title}</h2>
                 <div className="flex justify-end">
                   <button
-                    className="btn btn-md btn-square btn-secondary mt-2"
+                    className="btn btn-md btn-square btn-accent mt-2"
                     onClick={() => handleRemove(el.id)}
                   >
                     <FontAwesomeIcon

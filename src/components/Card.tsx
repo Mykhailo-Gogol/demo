@@ -13,7 +13,7 @@ export default function Card({
   previewMode,
 }: FeatureType) {
   return (
-    <div className="card rounded-none bg-secondary">
+    <div className="card rounded-none bg-accent">
       <figure>
         <Image
           src={src}
@@ -50,7 +50,7 @@ export default function Card({
           )}
         </div>
 
-        <Link href={'/' + slug} className="ml-auto btn btn-secondary">
+        <Link href={'/' + slug} className="ml-auto btn btn-accent">
           {callToActionText}
         </Link>
       </div>

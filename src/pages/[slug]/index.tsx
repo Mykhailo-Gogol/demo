@@ -101,7 +101,7 @@ export default function PageBySlug({
     <div className="mb-10">
       <p className="pb-5 fot-medium">{featureData.subtitle}</p>
       <div
-        className="mb-10 h-4 rounded-md bg-secondary"
+        className="mb-10 h-4 rounded-md bg-accent"
         style={{ backgroundColor: color }}
       />
       <form onSubmit={handleSubmit} className="mb-10">
@@ -121,7 +121,7 @@ export default function PageBySlug({
         </div>
         <button
           type="submit"
-          className="btn btn-secondary disabled:cursor-not-allowed"
+          className="btn btn-accent disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -141,14 +141,14 @@ export default function PageBySlug({
       <div className="flex justify-evenly md:justify-start max-w-lg">
         {/* <button
             type="submit"
-            className="btn btn-square btn-secondary mx-10"
+            className="btn btn-square btn-accent mx-10"
             disabled={Boolean(!prompt || !result)}
           >
             <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
           </button> */}
         <button
           disabled={Boolean(!result)}
-          className="btn btn-square btn-secondary"
+          className="btn btn-square btn-accent"
           onClick={handleCopy}
         >
           <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />

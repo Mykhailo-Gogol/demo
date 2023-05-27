@@ -21,7 +21,7 @@ export default function Hero() {
           excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
           id nisi.
         </p>
-        <Link href={'/profile'} className="btn btn-secondary">
+        <Link href={'/profile'} className="btn btn-accent">
           Get Started
         </Link>
       </div>
