@@ -3,10 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      "images.ctfassets.net",
-      "oaidalleapiprodscus.blob.core.windows.net",
+      'images.ctfassets.net',
+      'oaidalleapiprodscus.blob.core.windows.net',
     ],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

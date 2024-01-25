@@ -1,13 +1,13 @@
-import { appConfig } from "@/utils";
+import { appConfig } from '@/utils'
 import {
   faTwitter,
   faYoutube,
   faInstagram,
   faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import React from "react";
+} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import React from 'react'
 
 export default function Footer() {
   return (
@@ -73,5 +73,5 @@ export default function Footer() {
         </p>
       </div>
     </footer>
-  );
+  )
 }

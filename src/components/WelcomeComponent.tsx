@@ -1,5 +1,5 @@
-import Hero from "./Hero";
-import LoginHero from "./LoginHero";
+import Hero from './Hero'
+import LoginHero from './LoginHero'
 
 export function WelcomeComponent() {
   return (
@@ -7,5 +7,5 @@ export function WelcomeComponent() {
       <Hero />
       <LoginHero title="Login now!" />
     </section>
-  );
+  )
 }

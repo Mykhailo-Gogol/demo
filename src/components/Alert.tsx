@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default function Alert() {
   return (
@@ -20,5 +20,5 @@ export default function Alert() {
         <span>New software update available.</span>
       </div>
     </div>
-  );
+  )
 }
