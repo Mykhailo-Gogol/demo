@@ -12,26 +12,32 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      text_completions: {
+      completions: {
         Row: {
           completion: string | null
-          created_at: string | null
-          id: string
+          completion_slug: string | null
+          id: number
+          inserted_at: string
           title: string | null
+          updated_at: string
           user_id: string | null
         }
         Insert: {
           completion?: string | null
-          created_at?: string | null
-          id?: string
+          completion_slug?: string | null
+          id?: number
+          inserted_at?: string
           title?: string | null
+          updated_at?: string
           user_id?: string | null
         }
         Update: {
           completion?: string | null
-          created_at?: string | null
-          id?: string
+          completion_slug?: string | null
+          id?: number
+          inserted_at?: string
           title?: string | null
+          updated_at?: string
           user_id?: string | null
         }
       }
@@ -74,14 +80,15 @@ export interface Database {
   }
 }
 
-export type TextCompletionsType = PostgrestSingleResponse<
-  {
-    completion: string | null
-    created_at: string | null
-    id: number
-    title: string | null
-  }[]
->
+export type TextCompletionsType = {
+  completion: string | null
+  completion_slug: string | null
+  id: number
+  inserted_at: string
+  title: string | null
+  updated_at: string
+  user_id: string | null
+}[]
 
 export type ImageGenerationsType = PostgrestSingleResponse<
   {

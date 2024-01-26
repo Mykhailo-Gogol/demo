@@ -2,10 +2,16 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import { appConfig, features } from '@/utils'
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy } from '@fortawesome/free-regular-svg-icons'
+import {
+  faBookmark,
+  faCopy,
+  faTrashCan,
+} from '@fortawesome/free-regular-svg-icons'
 import { openai } from '@/api/openapi'
 import { FeatureType } from '@/utils/types'
-import { useUser } from '@supabase/auth-helpers-react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { TextCompletionsType } from '@/api/supabase/supabase.types'
+import { supabase } from '@/api/supabase'
 
 const colorRegex = '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})'
 
@@ -26,6 +32,7 @@ export async function getStaticProps({ params }: any) {
   const { slug } = params
 
   const featureData = features.find((feature) => feature.slug === slug)
+
   return {
     props: {
       featureData,
@@ -38,6 +45,7 @@ export default function PageBySlug({
 }: {
   featureData: FeatureType
 }) {
+  const supabaseClient = useSupabaseClient()
   const router = useRouter()
   const user = useUser()
 
@@ -71,15 +79,31 @@ export default function PageBySlug({
     }
   }
 
-  // const handleSave = async (e: FormEvent) => {
-  //   e.preventDefault();
+  const handleSave = async (e: FormEvent) => {
+    e.preventDefault()
 
-  //   const { error } = await supabaseClient
-  //     .from("text_completions")
-  //     .insert([{ title: prompt, completion: result, user_id: user?.id }]);
+    const { error, data } = await supabaseClient.from('completions').insert({
+      completion_slug: featureData.slug,
+      title: prompt,
+      completion: result,
+      user_id: user?.id,
+    })
 
-  //   console.log(error);
-  // };
+    console.log(data)
+    console.log(error)
+  }
+
+  const [completionsForSlug, setMyCompletionsForSlug] =
+    useState<TextCompletionsType>([])
+
+  const handleRemove = async (id: number) => {
+    const { error } = await supabaseClient
+      .from('completions')
+      .delete()
+      .eq('id', id)
+
+    console.log(error)
+  }
 
   const handleCopy = async () => {
     try {
@@ -97,11 +121,26 @@ export default function PageBySlug({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
+  useEffect(() => {
+    const fetchCompletions = async () => {
+      const { data } = await supabase
+        .from('completions')
+        .select('*')
+        .eq('completion_slug', featureData.slug)
+
+      if (data) {
+        setMyCompletionsForSlug(data)
+      }
+    }
+
+    fetchCompletions()
+  }, [])
+
   return (
     <div className="mb-10">
       <p className="pb-5 fot-medium">{featureData.subtitle}</p>
       <div
-        className="mb-10 h-4 rounded-md bg-accent"
+        className="mb-10 h-4 rounded-md bg-primary"
         style={{ backgroundColor: color }}
       />
       <form onSubmit={handleSubmit} className="mb-10">
@@ -121,7 +160,7 @@ export default function PageBySlug({
         </div>
         <button
           type="submit"
-          className="btn btn-accent disabled:cursor-not-allowed"
+          className="btn btn-primary disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -139,23 +178,44 @@ export default function PageBySlug({
         />
       </form>
       <div className="flex justify-evenly md:justify-start max-w-lg">
-        {/* <button
-            type="submit"
-            className="btn btn-square btn-accent mx-10"
-            disabled={Boolean(!prompt || !result)}
-          >
-            <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
-          </button> */}
+        <button
+          type="submit"
+          className="btn btn-square btn-primary mx-10"
+          disabled={Boolean(!prompt || !result)}
+          onClick={handleSave}
+        >
+          <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
+        </button>
         <button
           disabled={Boolean(!result)}
-          className="btn btn-square btn-accent"
+          className="btn btn-square btn-primary"
           onClick={handleCopy}
         >
           <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />
         </button>
       </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-20">
+        {completionsForSlug
+          ? completionsForSlug?.map((el) => (
+              <div key={el.id} className="card bg-secondary shadow-lg mb-10">
+                <div className="card-body p-5 ">
+                  <h2 className="card-title">{el.title}</h2>
+                  <p>{el.completion}</p>
+                  <button
+                    className="btn btn-md btn-square self-end mt-2"
+                    onClick={() => handleRemove(el.id)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      size={appConfig.iconSize}
+                    />
+                  </button>
+                </div>
+              </div>
+            ))
+          : 'Loading...'}
+      </div>
     </div>
   )
 }
-
-// test

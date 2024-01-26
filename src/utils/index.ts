@@ -268,5 +268,5 @@ interface AppConfigType {
 
 export const appConfig: AppConfigType = {
   iconSize: 'xl',
-  defaultTheme: themes.pastel,
+  defaultTheme: themes.wireframe,
 }
