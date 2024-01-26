@@ -71,9 +71,7 @@ export default function LoginHero({ title }: iProps) {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className={`btn btn-primary ${
-                    !Boolean(form.email) ? 'disabled' : ''
-                  }`}
+                  className={`btn ${!Boolean(form.email) ? 'disabled' : ''}`}
                   disabled={!Boolean(form.email)}
                 >
                   Login

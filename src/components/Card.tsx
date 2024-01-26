@@ -10,15 +10,15 @@ export default function Card({
   subtitle,
   callToActionText,
   tags,
-  previewMode,
+  collapsedMode,
 }: FeatureType) {
   return (
-    <div className="card rounded-none bg-primary">
+    <div className="card rounded-xl border-l-2 border-t-2 border-l-primary border-t-secondary border-double">
       <figure>
         <Image
           src={src}
           className={`object-cover w-full transition-all ease-out duration-500 ${
-            previewMode ? 'h-0' : 'h-32'
+            collapsedMode ? 'h-0' : 'h-32'
           }`}
           width={500}
           alt="alt"
@@ -26,14 +26,14 @@ export default function Card({
       </figure>
       <div
         className={`card-body shadow-xl p-4 ${
-          previewMode
+          collapsedMode
             ? 'flex flex-row flex-wrap justify-between items-center'
             : ''
         }`}
       >
         <div className="flex-1">
           <h2 className="card-title">{title}</h2>
-          {!previewMode && (
+          {!collapsedMode && (
             <>
               <p>{subtitle}</p>
               <div className="-ml-2 pt-2 flex items-center">
@@ -50,7 +50,7 @@ export default function Card({
           )}
         </div>
 
-        <Link href={'/' + slug} className="ml-auto btn btn-primary">
+        <Link href={'/' + slug} className="ml-auto btn">
           {callToActionText}
         </Link>
       </div>

@@ -16,6 +16,8 @@ import {
 } from '@supabase/auth-helpers-react'
 import { TextCompletionsType } from '@/api/supabase/supabase.types'
 import { supabase } from '@/api/supabase'
+import { useQuery } from '@tanstack/react-query'
+import { getCompletionsBySlug } from '@/api/supabase/getCompletionsBySlug'
 
 const colorRegex = '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})'
 
@@ -34,26 +36,40 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const { slug } = params
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  const featureData = features.find((feature) => feature.slug === slug)
+  const completions = await getCompletionsBySlug(slug, user)
+
+  const feature = features.find((feature) => feature.slug === slug)
 
   return {
     props: {
-      featureData,
+      feature,
+      completions,
     },
   }
 }
 
 export default function PageBySlug({
-  featureData,
+  feature,
+  completions,
 }: {
-  featureData: FeatureType
+  feature: FeatureType
+  completions: TextCompletionsType
 }) {
   const supabaseClient = useSupabaseClient()
   const router = useRouter()
   const user = useUser()
 
   const session = useSession()
+
+  const { data, refetch } = useQuery({
+    queryKey: ['completions'],
+    queryFn: () => getCompletionsBySlug(feature.slug, user),
+    initialData: completions,
+  })
 
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState('')
@@ -65,8 +81,8 @@ export default function PageBySlug({
     setLoading(true)
     try {
       const res = await openai.createCompletion({
-        ...featureData.settings,
-        prompt: featureData.label + '\n' + prompt,
+        ...feature.settings,
+        prompt: feature.label + '\n' + prompt,
       })
 
       const text: string = res?.data.choices[0].text as string
@@ -91,25 +107,27 @@ export default function PageBySlug({
     const { error, data } = await supabaseClient.from('completions').insert({
       title: prompt,
       completion: result,
-      completion_slug: featureData.slug,
+      completion_slug: feature.slug,
     })
 
     console.log(data)
     console.log(error)
+
+    await refetch()
   }
 
-  const [completionsForSlug, setMyCompletionsForSlug] =
-    useState<TextCompletionsType>([])
-
   const handleRemove = async (id: number) => {
-    const { error } = await supabaseClient
+    const { error, data } = await supabaseClient
       .from('completions')
       .delete()
       .eq('id', id)
-      .eq('completion_slug', featureData.slug)
+      .eq('completion_slug', feature.slug)
       .eq('user_id', session?.user.id)
 
+    console.log(data)
     console.log(error)
+
+    await refetch()
   }
 
   const handleCopy = async () => {
@@ -121,6 +139,12 @@ export default function PageBySlug({
     }
   }
 
+  const handleClear = () => {
+    setPrompt('')
+    setResult('')
+    setColor('')
+  }
+
   useEffect(() => {
     if (!user) {
       router.push('/')
@@ -128,41 +152,24 @@ export default function PageBySlug({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
-  useEffect(() => {
-    if (session?.user.id) {
-      const fetchCompletions = async () => {
-        const { data } = await supabase
-          .from('completions')
-          .select('*')
-          .eq('completion_slug', featureData.slug)
-          .eq('user_id', session?.user.id)
-
-        if (data) {
-          setMyCompletionsForSlug(data)
-        }
-      }
-
-      fetchCompletions()
-    }
-  }, [session?.user.id, featureData.slug])
-
   return (
     <div className="mb-10">
-      <p className="pb-5 fot-medium">{featureData.subtitle}</p>
+      <p className="pb-5 fot-mono text-xl">{feature.subtitle}</p>
       <div
-        className="mb-10 h-4 rounded-md bg-primary"
+        className="mb-10 h-4 rounded-md bg-secondary"
         style={{ backgroundColor: color }}
       />
       <form onSubmit={handleSubmit} className="mb-10">
         <div className="form-control w-full max-w-lg mb-5">
           <label className="label mb-5">
             <span className="label-text text-base">
-              {featureData.label || 'Write a prompt:'}
+              {feature.label || 'Write a prompt:'}
             </span>
           </label>
           <input
             type="text"
-            placeholder="..."
+            placeholder="Enter a prompt"
+            title="Prompt"
             className="input input-bordered w-full max-w-lg"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
@@ -170,19 +177,21 @@ export default function PageBySlug({
         </div>
         <button
           type="submit"
-          className="btn btn-primary disabled:cursor-not-allowed"
+          className="btn disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
         </button>
       </form>
-      <form onSubmit={() => {}} className="mb-10">
+      <form className="mb-10">
         <textarea
           rows={5}
-          value={loading ? 'Loading...' : result}
+          value={result}
           onChange={(e) => setResult(e.target.value)}
           placeholder={
-            loading ? 'Loading...' : 'Max answear length is 30 words'
+            loading
+              ? 'Loading...'
+              : 'Please submit prompt. Max answear length is 30 words'
           }
           className="textarea textarea-bordered textarea-md w-full max-w-lg"
         />
@@ -190,25 +199,35 @@ export default function PageBySlug({
       <div className="flex justify-evenly md:justify-start max-w-lg">
         <button
           type="submit"
-          className="btn btn-square btn-primary mx-10"
+          className="btn btn-square btn-ghost mx-5"
           disabled={Boolean(!prompt || !result)}
           onClick={handleSave}
         >
           <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />
         </button>
         <button
-          disabled={Boolean(!result)}
-          className="btn btn-square btn-primary"
+          disabled={Boolean(!prompt || !result)}
+          className="btn btn-square btn-ghost mx-5"
           onClick={handleCopy}
         >
           <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />
         </button>
+        <button
+          disabled={Boolean(!prompt || !result)}
+          className="btn btn-square btn-ghost mx-5"
+          onClick={handleClear}
+        >
+          <FontAwesomeIcon icon={faTrashCan} size={appConfig.iconSize} />
+        </button>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-20">
-        {completionsForSlug
-          ? completionsForSlug?.map((el) => (
-              <div key={el.id} className="card bg-secondary shadow-lg mb-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-20 items-start">
+        {data
+          ? data?.map((el) => (
+              <div
+                key={el.id}
+                className="card bg-secondary shadow-lg mb-10 max-h-60 overflow-y-scroll"
+              >
                 <div className="card-body p-5 ">
                   <h2 className="card-title">{el.title}</h2>
                   <p>{el.completion}</p>

@@ -263,10 +263,14 @@ export const themes = {
 
 interface AppConfigType {
   iconSize: FontAwesomeIconProps['size']
+  iconWidth: FontAwesomeIconProps['width']
+  iconHeight: FontAwesomeIconProps['height']
   defaultTheme: string
 }
 
 export const appConfig: AppConfigType = {
   iconSize: 'xl',
-  defaultTheme: themes.wireframe,
+  iconWidth: 24,
+  iconHeight: 24,
+  defaultTheme: themes.dracula,
 }

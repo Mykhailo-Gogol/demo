@@ -11,7 +11,7 @@ export default function Profile({ user }: iProps) {
 
   const handleLogout = async () => {
     try {
-      const res = confirm('Are you sure?')
+      const res = confirm('Logout ?')
       if (res) {
         await supabaseClient.auth.signOut()
       }
@@ -29,7 +29,7 @@ export default function Profile({ user }: iProps) {
         </div>
       </div>
       <span className="block mb-5">{user.email}</span>
-      <button onClick={handleLogout} className="btn btn-primary">
+      <button onClick={handleLogout} className="btn">
         Logout
       </button>
     </div>

@@ -11,7 +11,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      const res = confirm('Are you sure?')
+      const res = confirm('Logout ?')
       if (res) {
         await supabaseClient.auth.signOut()
       }
@@ -32,8 +32,13 @@ export default function Header() {
   return (
     <header className="navbar pt-5 px-0">
       <div className="flex-1">
-        <Link href={'/'} className="btn btn-primary p-2 w-12 lg:w-20">
-          <FontAwesomeIcon icon={faHeart} size={appConfig.iconSize} />
+        <Link href={'/'} className="btn p-2 w-12 lg:w-20">
+          <FontAwesomeIcon
+            icon={faHeart}
+            size={appConfig.iconSize}
+            width={appConfig.iconWidth}
+            height={appConfig.iconHeight}
+          />
         </Link>
       </div>
       <div className="flex-none gap-2">
@@ -45,14 +50,19 @@ export default function Header() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-primary p-2 w-12 lg:w-20">
+          <label tabIndex={0} className="btn p-2 w-12 lg:w-20">
             <div>
-              <FontAwesomeIcon icon={faUser} size={appConfig.iconSize} />
+              <FontAwesomeIcon
+                icon={faUser}
+                size={appConfig.iconSize}
+                width={appConfig.iconWidth}
+                height={appConfig.iconHeight}
+              />
             </div>
           </label>
           <ul
             tabIndex={0}
-            className="mt-3 p-4 w-80 shadow menu menu-compact dropdown-content rounded-box bg-primary"
+            className="mt-3 p-4 w-80 shadow menu menu-compact dropdown-content rounded-box bg-secondary"
           >
             {authLinks.map(({ link, text, badge }) => (
               <li key={link} className="mb-1">

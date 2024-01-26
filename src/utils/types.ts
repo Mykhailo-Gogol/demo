@@ -18,5 +18,5 @@ export interface FeatureType {
     presence_penalty: number
     stop?: string[]
   }
-  previewMode?: boolean
+  collapsedMode?: boolean
 }

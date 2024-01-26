@@ -106,7 +106,7 @@ export default function App({
         </div>
         <button
           type="submit"
-          className="btn btn-primary disabled:cursor-not-allowed"
+          className="btn disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit
@@ -134,7 +134,7 @@ export default function App({
       <div className="max-w-lg mb-10">
         <button
           onClick={handleSave}
-          className="btn btn-primary disabled:cursor-not-allowed"
+          className="btn disabled:cursor-not-allowed"
           disabled={Boolean(!result)}
         >
           <FontAwesomeIcon icon={faBookmark} size={appConfig.iconSize} />

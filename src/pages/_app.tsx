@@ -8,6 +8,9 @@ import { motion, useWillChange } from 'framer-motion'
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [supabaseClient] = useState(() => createPagesBrowserClient())
@@ -19,20 +22,22 @@ export default function App({ Component, pageProps }: AppProps) {
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
-      <div className="px-4 lg:px-24 min-h-screen flex flex-col justify-between">
-        <Header />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          style={{ willChange }}
-        >
-          <div className="py-10 lg:py-12">
-            <Component {...pageProps} />
-          </div>
-        </motion.div>
-        <Footer />
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div className="px-4 lg:px-24 min-h-screen flex flex-col justify-between">
+          <Header />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            style={{ willChange }}
+          >
+            <div className="py-10 lg:py-12">
+              <Component {...pageProps} />
+            </div>
+          </motion.div>
+          <Footer />
+        </div>
+      </QueryClientProvider>
     </SessionContextProvider>
   )
 }
