@@ -9,7 +9,11 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import { openai } from '@/api/openapi'
 import { FeatureType } from '@/utils/types'
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import {
+  useSession,
+  useSupabaseClient,
+  useUser,
+} from '@supabase/auth-helpers-react'
 import { TextCompletionsType } from '@/api/supabase/supabase.types'
 import { supabase } from '@/api/supabase'
 
@@ -49,6 +53,8 @@ export default function PageBySlug({
   const router = useRouter()
   const user = useUser()
 
+  const session = useSession()
+
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState('')
   const [loading, setLoading] = useState(false)
@@ -83,10 +89,9 @@ export default function PageBySlug({
     e.preventDefault()
 
     const { error, data } = await supabaseClient.from('completions').insert({
-      completion_slug: featureData.slug,
       title: prompt,
       completion: result,
-      user_id: user?.id,
+      completion_slug: featureData.slug,
     })
 
     console.log(data)
@@ -101,6 +106,8 @@ export default function PageBySlug({
       .from('completions')
       .delete()
       .eq('id', id)
+      .eq('completion_slug', featureData.slug)
+      .eq('user_id', session?.user.id)
 
     console.log(error)
   }
@@ -122,19 +129,22 @@ export default function PageBySlug({
   }, [user])
 
   useEffect(() => {
-    const fetchCompletions = async () => {
-      const { data } = await supabase
-        .from('completions')
-        .select('*')
-        .eq('completion_slug', featureData.slug)
+    if (session?.user.id) {
+      const fetchCompletions = async () => {
+        const { data } = await supabase
+          .from('completions')
+          .select('*')
+          .eq('completion_slug', featureData.slug)
+          .eq('user_id', session?.user.id)
 
-      if (data) {
-        setMyCompletionsForSlug(data)
+        if (data) {
+          setMyCompletionsForSlug(data)
+        }
       }
-    }
 
-    fetchCompletions()
-  }, [])
+      fetchCompletions()
+    }
+  }, [session?.user.id, featureData.slug])
 
   return (
     <div className="mb-10">

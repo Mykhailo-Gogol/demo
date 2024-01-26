@@ -20,25 +20,25 @@ export interface Database {
           inserted_at: string
           title: string | null
           updated_at: string
-          user_id: string | null
+          user_id: string
         }
         Insert: {
-          completion?: string | null
-          completion_slug?: string | null
-          id?: number
-          inserted_at?: string
-          title?: string | null
-          updated_at?: string
-          user_id?: string | null
+          completion: string | null
+          completion_slug: string | null
+          id: number
+          inserted_at: string
+          title: string | null
+          updated_at: string
+          user_id: string
         }
         Update: {
-          completion?: string | null
-          completion_slug?: string | null
-          id?: number
-          inserted_at?: string
-          title?: string | null
-          updated_at?: string
-          user_id?: string | null
+          completion: string | null
+          completion_slug: string | null
+          id: number
+          inserted_at: string
+          title: string | null
+          updated_at: string
+          user_id: string
         }
       }
       image_generations: {
@@ -87,7 +87,7 @@ export type TextCompletionsType = {
   inserted_at: string
   title: string | null
   updated_at: string
-  user_id: string | null
+  user_id: string
 }[]
 
 export type ImageGenerationsType = PostgrestSingleResponse<
