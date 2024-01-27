@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-title-in-document-head */
 import { appConfig } from '@/utils'
 import { Html, Head, Main, NextScript } from 'next/document'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function Document() {
   return (
@@ -13,6 +14,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <Analytics />
       </body>
     </Html>
   )
