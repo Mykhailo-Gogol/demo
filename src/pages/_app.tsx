@@ -10,6 +10,9 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -33,6 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
           >
             <div className="py-10 lg:py-12">
               <Component {...pageProps} />
+
+              <Analytics />
+              <SpeedInsights />
             </div>
           </motion.div>
           <Footer />
