@@ -26,9 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className="px-4 lg:px-24 min-h-screen flex flex-col justify-between">
           <Header />
           <motion.div
-            initial={{ opacity: 0.1 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1 }}
             style={{ willChange }}
           >
             <div className="py-10 lg:py-12">

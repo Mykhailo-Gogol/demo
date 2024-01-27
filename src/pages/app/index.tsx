@@ -7,6 +7,8 @@ import {
   faWindowMaximize,
   faWindowMinimize,
 } from '@fortawesome/free-regular-svg-icons'
+import { useUser } from '@supabase/auth-helpers-react'
+import { useRouter } from 'next/router'
 
 export default function App() {
   // Get the value from local storage if it exists
@@ -20,6 +22,15 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('box-office-app:collapsed', String(collapsedMode))
   }, [collapsedMode])
+
+  const user = useUser()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!user) {
+      router.replace('/')
+    }
+  }, [user, router])
 
   return (
     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">

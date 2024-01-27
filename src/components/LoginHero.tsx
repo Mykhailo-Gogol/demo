@@ -3,6 +3,7 @@ import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import { appConfig } from '@/utils'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 
 interface iProps {
   title: string
@@ -35,6 +36,14 @@ export default function LoginHero({ title }: iProps) {
     } catch (e) {
       console.error(e)
     }
+  }
+
+  const handleGoogleSignIn = async () => {
+    const data = await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+    })
+
+    console.log(data)
   }
 
   return (
@@ -71,10 +80,18 @@ export default function LoginHero({ title }: iProps) {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className={`btn ${!Boolean(form.email) ? 'disabled' : ''}`}
+                  className={`btn mb-2 ${!Boolean(form.email) ? 'disabled' : ''}`}
                   disabled={!Boolean(form.email)}
                 >
                   Login
+                </button>
+                <button
+                  type="button"
+                  className={`btn ${!Boolean(form.email) ? 'disabled' : ''}`}
+                  onClick={handleGoogleSignIn}
+                >
+                  <FontAwesomeIcon icon={faGoogle} size={appConfig.iconSize} />
+                  <span className="pl-2">Login with Google</span>
                 </button>
               </div>
             </form>
