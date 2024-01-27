@@ -41,6 +41,9 @@ export default function LoginHero({ title }: iProps) {
   const handleGoogleSignIn = async () => {
     const data = await supabaseClient.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        redirectTo: process.env.NEXT_PUBLIC_REDIRECT_URL,
+      },
     })
 
     console.log(data)
