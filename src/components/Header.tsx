@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
 import { appConfig } from '@/utils'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { useRouter } from 'next/router'
 
 export default function Header() {
   const user = useUser()
   const supabaseClient = useSupabaseClient()
+
+  const router = useRouter()
+
+  const [visible, setVisible] = useState(false)
 
   const handleLogout = async () => {
     try {
       const res = confirm('Logout ?')
       if (res) {
         await supabaseClient.auth.signOut()
+        router.replace('/welcome')
       }
     } catch (e) {
       console.error(e)
@@ -50,7 +56,11 @@ export default function Header() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn p-2 w-12 lg:w-20">
+          <label
+            tabIndex={0}
+            className="btn p-2 w-12 lg:w-20"
+            onClick={() => setVisible(true)}
+          >
             <div>
               <FontAwesomeIcon
                 icon={faUser}
@@ -60,27 +70,36 @@ export default function Header() {
               />
             </div>
           </label>
-          <ul
-            tabIndex={0}
-            className="mt-3 p-4 w-80 shadow menu menu-compact dropdown-content rounded-box bg-secondary"
-          >
-            {authLinks.map(({ link, text, badge }) => (
-              <li key={link} className="mb-1">
-                <Link href={link} className="py-4">
-                  {text}
-                  {badge && <span className="badge">New</span>}
-                </Link>
-              </li>
-            ))}
+          {visible && (
+            <ul
+              tabIndex={0}
+              className="bg-neutral w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl"
+            >
+              {authLinks.map(({ link, text, badge }) => (
+                <li key={link} className="mb-1">
+                  <Link
+                    href={link}
+                    className="py-4 font-light text-sm"
+                    onClick={() => setVisible(false)}
+                  >
+                    {text}
+                    {badge && <span className="badge badge-ghost">New</span>}
+                  </Link>
+                </li>
+              ))}
 
-            {user && (
-              <li>
-                <button className="py-4" onClick={handleLogout}>
-                  Logout
-                </button>
-              </li>
-            )}
-          </ul>
+              {user && (
+                <li
+                  className="font-light text-sm"
+                  onClick={() => setVisible(false)}
+                >
+                  <button className="py-4" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              )}
+            </ul>
+          )}
         </div>
       </div>
     </header>

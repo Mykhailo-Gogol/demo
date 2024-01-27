@@ -269,8 +269,8 @@ interface AppConfigType {
 }
 
 export const appConfig: AppConfigType = {
-  iconSize: 'xl',
-  iconWidth: 24,
-  iconHeight: 24,
+  iconSize: 'lg',
+  iconWidth: 20,
+  iconHeight: 20,
   defaultTheme: themes.dracula,
 }

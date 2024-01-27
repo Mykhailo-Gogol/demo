@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Card from './Card'
+import Card from '../../components/Card'
 
 import { appConfig, features } from '@/utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +8,7 @@ import {
   faWindowMinimize,
 } from '@fortawesome/free-regular-svg-icons'
 
-export default function AppComponent() {
+export default function App() {
   // Get the value from local storage if it exists
 
   const collapsed =
@@ -25,7 +25,7 @@ export default function AppComponent() {
     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
       <button
         title={collapsedMode ? 'Expand' : 'Collapse'}
-        className="min-h-[5rem] active:bg-primary transition-all ease-out duration-500"
+        className=" min-h-[80px] btn h-full"
         onClick={(e) => {
           e.preventDefault()
           setPreviewMode(!collapsedMode)

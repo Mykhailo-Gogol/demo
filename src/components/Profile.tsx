@@ -1,5 +1,6 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { User } from '@supabase/supabase-js'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 interface iProps {
@@ -8,12 +9,14 @@ interface iProps {
 
 export default function Profile({ user }: iProps) {
   const supabaseClient = useSupabaseClient()
+  const router = useRouter()
 
   const handleLogout = async () => {
     try {
       const res = confirm('Logout ?')
       if (res) {
         await supabaseClient.auth.signOut()
+        router.replace('/welcome')
       }
     } catch (e) {
       console.error(e)

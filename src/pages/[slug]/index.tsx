@@ -154,9 +154,9 @@ export default function PageBySlug({
 
   return (
     <div className="mb-10">
-      <p className="pb-5 fot-mono text-xl">{feature.subtitle}</p>
+      <p className="pb-5 font-mono text-lg">{feature.subtitle}</p>
       <div
-        className="mb-10 h-4 rounded-md bg-secondary"
+        className="mb-10 border-b-2 border-b-secondary"
         style={{ backgroundColor: color }}
       />
       <form onSubmit={handleSubmit} className="mb-10">
@@ -199,7 +199,7 @@ export default function PageBySlug({
       <div className="flex justify-evenly md:justify-start max-w-lg">
         <button
           type="submit"
-          className="btn btn-square btn-ghost mx-5"
+          className="btn btn-square mx-5"
           disabled={Boolean(!prompt || !result)}
           onClick={handleSave}
         >
@@ -207,14 +207,14 @@ export default function PageBySlug({
         </button>
         <button
           disabled={Boolean(!prompt || !result)}
-          className="btn btn-square btn-ghost mx-5"
+          className="btn btn-square mx-5"
           onClick={handleCopy}
         >
           <FontAwesomeIcon icon={faCopy} size={appConfig.iconSize} />
         </button>
         <button
           disabled={Boolean(!prompt || !result)}
-          className="btn btn-square btn-ghost mx-5"
+          className="btn btn-square mx-5"
           onClick={handleClear}
         >
           <FontAwesomeIcon icon={faTrashCan} size={appConfig.iconSize} />
@@ -226,7 +226,7 @@ export default function PageBySlug({
           ? data?.map((el) => (
               <div
                 key={el.id}
-                className="card bg-secondary shadow-lg mb-10 max-h-60 overflow-y-scroll"
+                className="card bg-neutral shadow-lg mb-10 max-h-60 overflow-y-scroll"
               >
                 <div className="card-body p-5 ">
                   <h2 className="card-title">{el.title}</h2>

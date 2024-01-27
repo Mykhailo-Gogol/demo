@@ -13,7 +13,7 @@ export default function Card({
   collapsedMode,
 }: FeatureType) {
   return (
-    <div className="card rounded-xl border-l-2 border-t-2 border-l-primary border-t-secondary border-double">
+    <div className="card shadow-xl rounded-xl overflow-hidden bg-neutral">
       <figure>
         <Image
           src={src}
@@ -25,14 +25,14 @@ export default function Card({
         />
       </figure>
       <div
-        className={`card-body shadow-xl p-4 ${
+        className={`card-body p-4 ${
           collapsedMode
             ? 'flex flex-row flex-wrap justify-between items-center'
             : ''
         }`}
       >
         <div className="flex-1">
-          <h2 className="card-title">{title}</h2>
+          <h2 className="card-title font-light text-lg">{title}</h2>
           {!collapsedMode && (
             <>
               <p>{subtitle}</p>
@@ -40,7 +40,7 @@ export default function Card({
                 {tags.map((item, i) => (
                   <div
                     key={[item, i].join('-')}
-                    className="badge badge-ghost opacity-50 mr-2"
+                    className="badge opacity-90 mr-2"
                   >
                     {item}
                   </div>
@@ -50,7 +50,7 @@ export default function Card({
           )}
         </div>
 
-        <Link href={'/' + slug} className="ml-auto btn">
+        <Link href={'/' + slug} className="ml-auto btn font-light">
           {callToActionText}
         </Link>
       </div>
