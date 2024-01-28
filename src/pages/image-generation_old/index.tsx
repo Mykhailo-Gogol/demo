@@ -78,8 +78,7 @@ export default function App({
     if (!user) {
       router.push('/')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  }, [user, router])
 
   const handleRemove = async (id: number) => {
     const { error } = await supabaseClient

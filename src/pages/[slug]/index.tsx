@@ -149,8 +149,7 @@ export default function PageBySlug({
     if (!user) {
       router.push('/')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  }, [user, router])
 
   return (
     <div className="mb-10">
