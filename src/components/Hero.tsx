@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <div className="p-0 mb-10 hero-content flex-col items-start lg:items-center lg:flex-row-reverse">
+    <div className="p-0 mb-10 hero-content flex-col items-start lg:items-center lg:flex-row-reverse lg:justify-between">
       <Image
         src={People}
         className="max-w-full rounded-md shadow-2xl rounded-br-[50px] rounded-tl-[50px] lg:rounded-br-[100px] lg:rounded-tl-[100px]"

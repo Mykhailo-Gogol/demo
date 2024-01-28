@@ -79,7 +79,7 @@ export default function Header() {
                 <li key={link} className="mb-1">
                   <Link
                     href={link}
-                    className="py-4 font-light text-sm"
+                    className="py-4 font-light text-sm active:bg-secondary active:text-inherit"
                     onClick={() => setVisible(false)}
                   >
                     {text}

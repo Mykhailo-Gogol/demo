@@ -1,3 +1,6 @@
+import { appConfig } from '@/utils'
+import { faCircleLeft } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
 export async function getServerSideProps() {
@@ -23,12 +26,13 @@ export default function statuePage({ statueCode, statueText }: iProps) {
     return (
       <div className="flex flex-1 justify-center items-center">
         <div>
-          <p className="py-2">
+          <p className="py-3">
             <span className="text-lg pr-2 mr-2 border-r-2">{statueCode}</span>
             {statueText}
           </p>
-          <Link href="/" className="link py-2 text-center">
-            Home
+          <Link href="/" className="link py-3 block text-center">
+            <FontAwesomeIcon icon={faCircleLeft} size={appConfig.iconSize} />
+            <span className="ml-2">Home</span>
           </Link>
         </div>
       </div>
@@ -38,9 +42,12 @@ export default function statuePage({ statueCode, statueText }: iProps) {
   return (
     <div className="flex flex-1 justify-center items-center">
       <div>
-        <p className="py-2">This page could not be found.</p>
-        <Link href="/" className="link py-2 text-center">
-          Home
+        <p className="py-3">
+          <span>This page could not be found.</span>
+        </p>
+        <Link href="/" className="link py-3 block text-center">
+          <FontAwesomeIcon icon={faCircleLeft} size={appConfig.iconSize} />
+          <span className="ml-2">Home</span>
         </Link>
       </div>
     </div>
