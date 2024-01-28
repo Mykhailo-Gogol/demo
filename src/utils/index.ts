@@ -1,5 +1,4 @@
-import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
-import { FeatureType } from './types'
+import { AppConfigType, FeatureType } from './types'
 
 import Plants1 from '@/static/cards/plants-1.jpg'
 import Plants2 from '@/static/cards/plants-2.jpg'
@@ -13,6 +12,7 @@ import Plants9 from '@/static/cards/plants-9.jpg'
 import Plants10 from '@/static/cards/plants-10.jpg'
 import Plants11 from '@/static/cards/plants-11.jpg'
 import Plants12 from '@/static/cards/plants-12.jpg'
+// import Plants13 from '@/static/cards/plants-13.jpg'
 
 export const features: FeatureType[] = [
   {
@@ -32,7 +32,6 @@ export const features: FeatureType[] = [
       presence_penalty: 0.0,
     },
   },
-
   {
     src: Plants2,
     slug: 'questions_and_answears',
@@ -227,6 +226,23 @@ export const features: FeatureType[] = [
       presence_penalty: 0.0,
     },
   },
+  // {
+  //   src: Plants13,
+  //   slug: 'image-generation',
+  //   tags: ['Generation'],
+  //   title: 'Image correction',
+  //   subtitle: 'Generate imagees based on propmpt.',
+  //   callToActionText: 'Generate',
+  //   label: 'Generate hight quality image based on prompt:',
+  //   settings: {
+  //     model: 'text-davinci-003',
+  //     max_tokens: 60,
+  //     temperature: 0,
+  //     top_p: 1.0,
+  //     frequency_penalty: 0.0,
+  //     presence_penalty: 0.0,
+  //   },
+  // },
 ]
 
 export const themes = {
@@ -259,13 +275,6 @@ export const themes = {
   night: 'night',
   coffee: 'coffee',
   winter: 'winter',
-}
-
-interface AppConfigType {
-  iconSize: FontAwesomeIconProps['size']
-  iconWidth: FontAwesomeIconProps['width']
-  iconHeight: FontAwesomeIconProps['height']
-  defaultTheme: string
 }
 
 export const appConfig: AppConfigType = {

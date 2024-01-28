@@ -1,8 +1,12 @@
 import { openai } from '@/api/openapi'
 import { ImageGenerationsType } from '@/api/supabase/supabase.types'
-import { User, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { appConfig } from '@/utils'
-import { faBookmark, faTrashCan } from '@fortawesome/free-regular-svg-icons'
+import {
+  faBookmark,
+  faQuestionCircle,
+  faTrashCan,
+} from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
@@ -29,14 +33,13 @@ export async function getServerSideProps(ctx: any) {
   }
 }
 
-export default function App({
+export default function ImageGeneration({
   data,
-  user,
 }: {
   data: ImageGenerationsType
-  user: User
 }) {
   const router = useRouter()
+  const user = useUser()
   const supabaseClient = useSupabaseClient()
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState('')
@@ -126,7 +129,15 @@ export default function App({
             />
           </div>
         ) : (
-          <span>Write a prompt and submit to generate an image</span>
+          <p>
+            <FontAwesomeIcon
+              icon={faQuestionCircle}
+              size={appConfig.iconSize}
+            />
+            <span className="ml-2">
+              Write a prompt and submit to generate an image
+            </span>
+          </p>
         )}
       </div>
 

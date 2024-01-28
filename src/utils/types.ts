@@ -1,3 +1,4 @@
+import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { ImageProps } from 'next/image'
 
 export interface FeatureType {
@@ -19,4 +20,11 @@ export interface FeatureType {
     stop?: string[]
   }
   collapsedMode?: boolean
+}
+
+export interface AppConfigType {
+  iconSize: FontAwesomeIconProps['size']
+  iconWidth: FontAwesomeIconProps['width']
+  iconHeight: FontAwesomeIconProps['height']
+  defaultTheme: string
 }
