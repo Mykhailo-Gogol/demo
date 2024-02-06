@@ -151,6 +151,12 @@ export default function PageBySlug({
     }
   }, [user, router])
 
+  useEffect(() => {
+    if (feature.link) {
+      router.replace(feature.link)
+    }
+  }, [feature, router])
+
   return (
     <div className="mb-10">
       <p className="pb-5 font-mono text-lg">{feature.subtitle}</p>

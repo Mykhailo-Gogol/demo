@@ -13,7 +13,7 @@ export default function Profile({ user }: iProps) {
 
   const handleLogout = async () => {
     try {
-      const res = confirm('Logout ?')
+      const res = confirm('Logout?')
       if (res) {
         await supabaseClient.auth.signOut()
         router.replace('/welcome')

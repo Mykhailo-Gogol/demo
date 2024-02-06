@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FeatureType } from '@/utils/types'
 
 export default function Card({
+  link,
   src,
   slug,
   title,
@@ -18,7 +19,7 @@ export default function Card({
         <Image
           src={src}
           className={`object-cover w-full transition-all ease-out duration-500 ${
-            collapsedMode ? 'h-0' : 'h-32'
+            collapsedMode ? 'h-2 blur-sm' : 'h-32 '
           }`}
           width={500}
           height={500}
@@ -51,7 +52,10 @@ export default function Card({
           )}
         </div>
 
-        <Link href={'/' + slug} className="ml-auto btn font-light">
+        <Link
+          href={link ? link : '/' + slug}
+          className="ml-auto btn font-light"
+        >
           {callToActionText}
         </Link>
       </div>

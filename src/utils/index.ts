@@ -1,22 +1,22 @@
 import { AppConfigType, FeatureType } from './types'
 
-import Plants1 from '@/static/cards/plants-1.jpg'
-import Plants2 from '@/static/cards/plants-2.jpg'
-import Plants3 from '@/static/cards/plants-3.jpg'
-import Plants4 from '@/static/cards/plants-4.jpg'
-import Plants5 from '@/static/cards/plants-5.jpg'
-import Plants6 from '@/static/cards/plants-6.jpg'
-import Plants7 from '@/static/cards/plants-7.jpg'
-import Plants8 from '@/static/cards/plants-8.jpg'
-import Plants9 from '@/static/cards/plants-9.jpg'
-import Plants10 from '@/static/cards/plants-10.jpg'
-import Plants11 from '@/static/cards/plants-11.jpg'
-import Plants12 from '@/static/cards/plants-12.jpg'
-// import Plants13 from '@/static/cards/plants-13.jpg'
+import Feature from '@/static/features/1.jpeg'
+import Feature2 from '@/static/features/2.jpeg'
+import Feature3 from '@/static/features/3.jpeg'
+import Feature4 from '@/static/features/4.jpeg'
+import Feature5 from '@/static/features/5.jpeg'
+import Feature6 from '@/static/features/6.jpeg'
+import Feature7 from '@/static/features/7.jpeg'
+import Feature8 from '@/static/features/8.jpeg'
+import Feature9 from '@/static/features/9.jpeg'
+import Feature10 from '@/static/features/10.jpeg'
+import Feature11 from '@/static/features/11.jpeg'
+import Feature12 from '@/static/features/12.jpeg'
+import Feature13 from '@/static/features/13.jpeg'
 
 export const features: FeatureType[] = [
   {
-    src: Plants1,
+    src: Feature,
     slug: 'grammar_correction',
     tags: ['Transformation', 'Generation'],
     title: 'Grammar correction',
@@ -33,7 +33,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants2,
+    src: Feature2,
     slug: 'questions_and_answears',
     tags: ['Answers', 'Generation', 'Conversation'],
     title: 'Q&A',
@@ -51,7 +51,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants3,
+    src: Feature3,
     slug: 'summarization',
     tags: ['Transformation', 'Generation'],
     title: 'TL;DR summarization',
@@ -68,7 +68,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants4,
+    src: Feature4,
     slug: 'product_ad_from_description',
     tags: ['Generation'],
     title: 'Ad from product description',
@@ -86,7 +86,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants5,
+    src: Feature5,
     slug: 'javascript_helper_chatbot',
     tags: ['Code', 'Answers', 'Conversation'],
     title: 'JavaScript chatbot',
@@ -104,7 +104,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants6,
+    src: Feature6,
     slug: 'explain_code',
     tags: ['Code', 'Translation'],
     title: 'Explain code',
@@ -121,7 +121,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants7,
+    src: Feature7,
     slug: 'mood_to_colors',
     tags: ['Transformation', 'Generation'],
     title: 'Mood to color',
@@ -138,7 +138,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants8,
+    src: Feature8,
     slug: 'friendly_chat',
     tags: ['Conversation', 'Generation'],
     title: 'Friendly chat',
@@ -157,7 +157,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants9,
+    src: Feature9,
     slug: 'analogy_maker',
     tags: ['Generation'],
     title: 'Analogy maker',
@@ -175,7 +175,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants10,
+    src: Feature10,
     slug: 'essay_outline',
     tags: ['Generation'],
     title: 'Essay outline',
@@ -192,7 +192,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants11,
+    src: Feature11,
     slug: 'study_notes',
     tags: ['Generation'],
     title: 'Create study notes',
@@ -209,7 +209,7 @@ export const features: FeatureType[] = [
     },
   },
   {
-    src: Plants12,
+    src: Feature12,
     slug: 'sarcastic_chat_bot',
     tags: ['Conversation', 'Generation'],
     title: 'Marv the sarcastic chat bot',
@@ -226,23 +226,24 @@ export const features: FeatureType[] = [
       presence_penalty: 0.0,
     },
   },
-  // {
-  //   src: Plants13,
-  //   slug: 'image-generation',
-  //   tags: ['Generation'],
-  //   title: 'Image correction',
-  //   subtitle: 'Generate imagees based on propmpt.',
-  //   callToActionText: 'Generate',
-  //   label: 'Generate hight quality image based on prompt:',
-  //   settings: {
-  //     model: 'text-davinci-003',
-  //     max_tokens: 60,
-  //     temperature: 0,
-  //     top_p: 1.0,
-  //     frequency_penalty: 0.0,
-  //     presence_penalty: 0.0,
-  //   },
-  // },
+  {
+    link: '/image-generation',
+    src: Feature13,
+    slug: 'image-generation-link',
+    tags: ['Generation'],
+    title: 'Image correction',
+    subtitle: 'Generate imagees based on propmpt.',
+    callToActionText: 'Generate',
+    label: 'Generate hight quality image based on prompt:',
+    settings: {
+      model: 'text-davinci-003',
+      max_tokens: 60,
+      temperature: 0,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+    },
+  },
 ]
 
 export const themes = {

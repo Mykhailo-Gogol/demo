@@ -1,7 +1,9 @@
 import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
+import { Url } from 'next/dist/shared/lib/router/router'
 import { ImageProps } from 'next/image'
 
 export interface FeatureType {
+  link?: Url
   src: ImageProps['src']
   slug: string
   title: string
