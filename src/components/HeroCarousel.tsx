@@ -19,7 +19,7 @@ export default function HeroCarousel() {
             <div className="relative overflow-hidden rounded-box">
               <Image
                 src={item.src}
-                className="object-cover h-full"
+                className="object-center object-cover h-full"
                 alt="hero"
                 width={500}
                 height={500}

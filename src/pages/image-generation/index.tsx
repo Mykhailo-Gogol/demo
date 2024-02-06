@@ -1,13 +1,10 @@
 import { openai } from '@/api/openapi'
 import { ImageGenerationsType } from '@/api/supabase/supabase.types'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
-import { appConfig } from '@/utils'
-import {
-  faBookmark,
-  faQuestionCircle,
-  faTrashCan,
-} from '@fortawesome/free-regular-svg-icons'
+import { appConfig, features } from '@/utils'
+import { faBookmark, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/router'
@@ -93,10 +90,14 @@ export default function ImageGeneration({
 
   return (
     <div className="mb-10">
+      <p className="pb-5 font-mono text-lg">{features[12].title}</p>
+      <div className="mb-10 border-b-2 border-b-secondary" />
       <form onSubmit={handleSubmit} className="mb-20">
         <div className="form-control w-full max-w-lg mb-5">
-          <label className="label">
-            <span className="label-text">Write a prompt</span>
+          <label className="label mb-5">
+            <span className="label-text text-base">
+              {features[12].label || 'Write a prompt:'}
+            </span>
           </label>
           <input
             type="text"
@@ -129,9 +130,10 @@ export default function ImageGeneration({
             />
           </div>
         ) : (
-          <p>
+          <p className="flex items-center">
             <FontAwesomeIcon
-              icon={faQuestionCircle}
+              // investigate
+              icon={faCircleInfo as any}
               size={appConfig.iconSize}
             />
             <span className="ml-2">
