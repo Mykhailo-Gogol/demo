@@ -52,14 +52,7 @@ export default function App() {
         <Card
           collapsedMode={collapsedMode}
           key={[i, item.slug].join('-')}
-          src={item.src}
-          title={item.title}
-          subtitle={item.subtitle}
-          callToActionText={item.callToActionText}
-          slug={item.slug}
-          tags={item.tags}
-          settings={item.settings}
-          label={item.label}
+          {...item}
         />
       ))}
     </div>

@@ -50,8 +50,8 @@ export default function LoginHero({ title }: iProps) {
   }
 
   return (
-    <div className="hero mb-10">
-      <div className="hero-content flex-col lg:flex-row-reverse lg:justify-around">
+    <div className="hero mb-20">
+      <div className="hero-content p-0 flex-col lg:flex-row-reverse lg:justify-around">
         <div className="text-center lg:text-left lg:w-1/2">
           <h1 className="text-5xl font-bold">{title}</h1>
           <p className="py-6">

@@ -1,11 +1,13 @@
 import Hero from '../../components/Hero'
-import LoginHero from '../../components/LoginHero'
+import HeroLogin from '../../components/HeroLogin'
+import HeroCarousel from '@/components/HeroCarousel'
 
 export default function Welcome() {
   return (
     <section>
       <Hero />
-      <LoginHero title="Login now!" />
+      <HeroCarousel />
+      <HeroLogin title="Login now!" />
     </section>
   )
 }

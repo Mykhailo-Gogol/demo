@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint . && next lint --fix",
     "lint-ts": "tsc",
-    "lint-prettier": "prettier . --write"
+    "lint-prettier": "prettier . --check"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.0",

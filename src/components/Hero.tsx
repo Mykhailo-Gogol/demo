@@ -6,13 +6,13 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <div className="p-0 mb-10 hero-content flex-col items-start lg:items-center lg:flex-row-reverse lg:justify-between">
+    <div className="p-0 mb-20 hero-content flex-col items-start lg:items-center lg:flex-row-reverse lg:justify-between">
       <Image
         src={People}
         className="max-w-full rounded-md shadow-2xl rounded-br-[50px] rounded-tl-[50px] lg:rounded-br-[100px] lg:rounded-tl-[100px]"
         alt="hero"
         width={500}
-        height={300}
+        height={500}
       />
       <div>
         <h1 className="text-5xl font-bold">Box Office News!</h1>

@@ -1,8 +1,7 @@
-import Hero from '@/components/Hero'
-import LoginHero from '@/components/LoginHero'
 import { useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import Welcome from './welcome'
 
 export default function Home() {
   const user = useUser()
@@ -14,10 +13,5 @@ export default function Home() {
     }
   }, [user, router])
 
-  return (
-    <section>
-      <Hero />
-      <LoginHero title="Login now!" />
-    </section>
-  )
+  return <Welcome />
 }

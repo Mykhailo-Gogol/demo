@@ -21,7 +21,8 @@ export default function Card({
             collapsedMode ? 'h-0' : 'h-32'
           }`}
           width={500}
-          alt="alt"
+          height={500}
+          alt={title}
         />
       </figure>
       <div

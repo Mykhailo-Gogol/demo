@@ -1,6 +1,6 @@
 import React from 'react'
 import { useUser } from '@supabase/auth-helpers-react'
-import LoginHero from '@/components/LoginHero'
+import LoginHero from '@/components/HeroLogin'
 import Profile from '@/components/Profile'
 
 export default function Login() {
