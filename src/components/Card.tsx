@@ -18,9 +18,7 @@ export default function Card({
       <figure>
         <Image
           src={src}
-          className={`object-center object-cover w-full transition-all ease-out duration-500 ${
-            collapsedMode ? 'h-2 blur-sm' : 'h-32 '
-          }`}
+          className={`object-center object-cover w-full transition-all ease-out duration-500 h-40`}
           width={500}
           height={500}
           alt={title}

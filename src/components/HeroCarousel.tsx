@@ -6,8 +6,8 @@ export default function HeroCarousel() {
   return (
     <div className="mb-20">
       <div className="py-5 text-center">
-        <h1 className="text-2xl font-light">
-          Lorem ipsum dolor sit amet consectetur adipisicing.
+        <h1 className="text-2xl">
+          Unlock the Next Level of learning<span className="text-3xl"> ✨</span>
         </h1>
       </div>
       <div className="carousel carousel-center w-full p-0 space-x-4 md:rounded-box">

@@ -50,20 +50,21 @@ export default function LoginHero({ title }: iProps) {
   }
 
   return (
-    <div className="hero mb-20">
+    <div className="hero mb-10">
       <div className="hero-content p-0 flex-col lg:flex-row-reverse lg:justify-around">
         <div className="text-center lg:text-left lg:w-1/2">
           <h1 className="text-5xl font-bold">{title}</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+          <p className="py-6 text-xl">
+            <span className="text-2xl">✨</span> Log in to Box Office News to
+            engage AI in your learning: Grammar Correction, Q&A, Summarization,
+            Ad Generator, Explain Code, and more. Log in now! Experience the
+            magic of learning transformed!
           </p>
         </div>
         {submited && !user ? (
-          <div className="flex flex-col items-start md:items-center">
+          <div className="flex flex-col items-start md:items-center text-center">
             <span className="mb-4">
-              Welcome! Check out your email, and click log in
+              Welcome! Check out your email, and click log in Box Office News{' '}
             </span>
             <FontAwesomeIcon icon={faThumbsUp} size={appConfig.iconSize} />
           </div>
