@@ -51,19 +51,19 @@ export default function LoginHero({ title }: iProps) {
 
   return (
     <div className="hero mb-10">
-      <div className="hero-content p-0 flex-col lg:flex-row-reverse lg:justify-around">
+      <div className="hero-content p-0 flex-col lg:flex-row-reverse lg:justify-around md:gap-10">
         <div className="text-center lg:text-left lg:w-1/2">
           <h1 className="text-5xl font-bold">{title}</h1>
           <p className="py-6 text-xl">
-            <span className="text-2xl">✨</span> Log in to Box Office News to
-            engage AI in your learning: Grammar Correction, Q&A, Summarization,
-            Ad Generator, Explain Code, and more. Log in now! Experience the
-            magic of learning transformed!
+            {/* Log in to Box Office News to engage AI in your learning: Grammar
+            Correction, Q&A, Summarization, Ad Generator, Explain Code, and more */}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+            beatae quisquam provident repellendus odit minima.
           </p>
         </div>
         {submited && !user ? (
-          <div className="flex flex-col items-start md:items-center text-center">
-            <span className="mb-4">
+          <div className="flex flex-col text-center lg:w-1/3">
+            <span className="mb-4 text-xl">
               Welcome! Check out your email, and click log in Box Office News{' '}
             </span>
             <FontAwesomeIcon icon={faThumbsUp} size={appConfig.iconSize} />

@@ -17,9 +17,11 @@ export default function Hero() {
       <div className="py-4 w-full lg:w-3/5">
         <h1 className="text-5xl font-bold">Box Office News!</h1>
         <p className="py-6 w-full md:w-2/3 text-xl">
-          <span className="text-2xl">✨ </span>Complex topics, accurate answers.
+          {/* <span className="text-2xl">✨ </span>Complex topics, accurate answers.
           Master AI concepts through AI-powered exercises that help on your
-          learning path.
+          learning path. */}
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi maxime
+          ut quos sequi tempore mollitia.
         </p>
         <Link href={'/profile'} className="btn">
           Get Started
