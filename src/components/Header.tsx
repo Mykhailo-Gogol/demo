@@ -46,10 +46,10 @@ export default function Header() {
       </div>
 
       <div className="md:px-10 hidden md:block">
-        <Link href="#" className="font-light mr-3 md:mr-5 hover:underline">
+        <Link href="/how-it-works" className="mr-3 md:mr-5 hover:underline">
           How it works
         </Link>
-        <Link href="#" className="font-light mr-3 md:mr-5 hover:underline">
+        <Link href="#" className=" mr-3 md:mr-5 hover:underline">
           About
         </Link>
       </div>
@@ -82,7 +82,7 @@ export default function Header() {
                 <li key={link} className="mb-1">
                   <Link
                     href={link}
-                    className="py-4 font-light text-sm active:bg-primary active:text-inherit"
+                    className="py-4  text-sm active:bg-primary active:text-inherit"
                     onClick={() => setVisible(false)}
                   >
                     {text}
@@ -94,8 +94,8 @@ export default function Header() {
               <div className="block md:hidden">
                 <li className="mb-1">
                   <Link
-                    href="#"
-                    className="py-4 font-light text-sm active:bg-primary active:text-inherit"
+                    href="/how-it-works"
+                    className="py-4  text-sm active:bg-primary active:text-inherit"
                   >
                     How it works
                   </Link>
@@ -103,7 +103,7 @@ export default function Header() {
                 <li className="mb-1">
                   <Link
                     href="#"
-                    className="py-4 font-light text-sm active:bg-primary active:text-inherit"
+                    className="py-4  text-sm active:bg-primary active:text-inherit"
                   >
                     About
                   </Link>
@@ -111,12 +111,9 @@ export default function Header() {
               </div>
 
               {user && (
-                <li
-                  className="font-light text-sm"
-                  onClick={() => setVisible(false)}
-                >
+                <li className=" text-sm" onClick={() => setVisible(false)}>
                   <button
-                    className="py-4 active:bg-primary active:text-inherit"
+                    className="py-4 bg-error text-error-content active:bg-primary active:text-inherit"
                     onClick={handleLogout}
                   >
                     Logout

@@ -32,7 +32,7 @@ export default function Card({
         }`}
       >
         <div className="flex-1">
-          <h2 className="card-title font-light text-lg">{title}</h2>
+          <h2 className="card-title  text-lg">{title}</h2>
           {!collapsedMode && (
             <>
               <p>{subtitle}</p>
@@ -52,7 +52,7 @@ export default function Card({
 
         <Link
           href={link ? link : '/' + slug}
-          className="ml-auto btn btn-neutral font-light"
+          className="ml-auto btn btn-neutral "
         >
           {callToActionText}
         </Link>

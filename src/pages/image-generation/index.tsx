@@ -165,7 +165,7 @@ export default function ImageGeneration({
                   alt={el.title || ''}
                 />
 
-                <h2 className="card-title font-light">{el.title}</h2>
+                <h2 className="card-title ">{el.title}</h2>
                 <div className="flex justify-end">
                   <button
                     className="btn btn-md btn-square btn-ghost mt-2"

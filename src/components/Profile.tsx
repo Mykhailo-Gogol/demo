@@ -33,7 +33,10 @@ export default function Profile({ user }: iProps) {
       </div>
 
       <span className="block mb-5">{user.email}</span>
-      <button onClick={handleLogout} className="btn">
+      <button
+        onClick={handleLogout}
+        className="btn bg-error text-error-content"
+      >
         Logout
       </button>
     </div>
