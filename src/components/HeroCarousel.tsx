@@ -4,9 +4,9 @@ import React from 'react'
 
 export default function HeroCarousel() {
   return (
-    <div className="mb-20">
+    <div className="mb-24">
       <div className="py-5 text-center">
-        <h1 className="text-3xl">
+        <h1 className="text-2xl">
           {/* Unlock the Next Level of learning */}
           Lorem ipsum dolor sit amet.
         </h1>

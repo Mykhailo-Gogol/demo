@@ -36,7 +36,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="navbar pt-5 px-0">
+    <header className="navbar pt-5 px-0 mb-10">
       <div className="flex-1">
         <Link href={'/'} className="btn p-2 w-12 lg:w-20">
           <FontAwesomeIcon
@@ -93,7 +93,10 @@ export default function Header() {
                   className="font-light text-sm"
                   onClick={() => setVisible(false)}
                 >
-                  <button className="py-4" onClick={handleLogout}>
+                  <button
+                    className="py-4 active:bg-secondary active:text-inherit"
+                    onClick={handleLogout}
+                  >
                     Logout
                   </button>
                 </li>

@@ -50,10 +50,10 @@ export default function LoginHero({ title }: iProps) {
   }
 
   return (
-    <div className="hero mb-10">
+    <div className="hero my-24">
       <div className="hero-content p-0 flex-col lg:flex-row-reverse lg:justify-around md:gap-10">
         <div className="text-center lg:text-left lg:w-1/2">
-          <h1 className="text-5xl font-bold">{title}</h1>
+          <h1 className="text-3xl font-bold">{title}</h1>
           <p className="py-6 text-xl">
             {/* Log in to Box Office News to engage AI in your learning: Grammar
             Correction, Q&A, Summarization, Ad Generator, Explain Code, and more */}

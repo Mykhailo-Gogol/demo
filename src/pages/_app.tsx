@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
             transition={{ duration: 1 }}
             style={{ willChange }}
           >
-            <div className="py-10 lg:py-12">
+            <div className="lg:py-12">
               <Component {...pageProps} />
 
               <Analytics />
