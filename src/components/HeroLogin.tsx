@@ -55,16 +55,16 @@ export default function LoginHero({ title }: iProps) {
         <div className="text-center lg:text-left lg:w-1/2">
           <h1 className="text-3xl font-bold">{title}</h1>
           <p className="py-6 text-xl">
-            {/* Log in to Box Office News to engage AI in your learning: Grammar
-            Correction, Q&A, Summarization, Ad Generator, Explain Code, and more */}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-            beatae quisquam provident repellendus odit minima.
+            Log in to engage AI in your learning: Grammar Correction, Q&A,
+            Summarization, Ad Generator, Explain Code, and more
+            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+            beatae quisquam provident repellendus odit minima. */}
           </p>
         </div>
         {submited && !user ? (
           <div className="flex flex-col text-center lg:w-1/3">
             <span className="mb-4 text-xl">
-              Welcome! Check out your email, and click log in Box Office News{' '}
+              Welcome! Check out your email, and click log in Box Office News
             </span>
             <FontAwesomeIcon icon={faThumbsUp} size={appConfig.iconSize} />
           </div>

@@ -76,7 +76,7 @@ export default function Header() {
           {visible && (
             <ul
               tabIndex={0}
-              className="bg-neutral w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-10"
+              className="bg-neutral w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20"
             >
               {authLinks.map(({ link, text, badge }) => (
                 <li key={link} className="mb-1">

@@ -12,7 +12,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <footer className="footer footer-center py-5 text-base-content rounded">
-      <div className="grid grid-flow-col gap-4">
+      {/* <div className="grid grid-flow-col gap-4">
         <Link href="#" className="link link-hover">
           About us
         </Link>
@@ -25,7 +25,7 @@ export default function Footer() {
         <Link href="#" className="link link-hover">
           Press kit
         </Link>
-      </div>
+      </div> */}
       <div>
         <div className="grid grid-flow-col gap-4">
           <Link
