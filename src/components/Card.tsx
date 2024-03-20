@@ -14,7 +14,7 @@ export default function Card({
   collapsedMode,
 }: FeatureType) {
   return (
-    <div className="card shadow-xl rounded-xl overflow-hidden bg-neutral">
+    <div className="card shadow-xl rounded-xl overflow-hidden">
       <figure>
         <Image
           src={src}
@@ -36,11 +36,11 @@ export default function Card({
           {!collapsedMode && (
             <>
               <p>{subtitle}</p>
-              <div className="-ml-2 pt-2 flex items-center">
+              <div className="-ml-1 pt-2 flex items-center">
                 {tags.map((item, i) => (
                   <div
                     key={[item, i].join('-')}
-                    className="badge opacity-90 mr-2"
+                    className="badge badge-neutral opacity-90 mr-2"
                   >
                     {item}
                   </div>
@@ -52,7 +52,7 @@ export default function Card({
 
         <Link
           href={link ? link : '/' + slug}
-          className="ml-auto btn font-light"
+          className="ml-auto btn btn-neutral font-light"
         >
           {callToActionText}
         </Link>

@@ -28,16 +28,32 @@ export default function Footer() {
       </div>
       <div>
         <div className="grid grid-flow-col gap-4">
-          <Link href="#" target="_blank" className="btn btn-circle p-2">
+          <Link
+            href="#"
+            target="_blank"
+            className="btn btn-circle btn-neutral p-2"
+          >
             <FontAwesomeIcon icon={faYoutube} size={appConfig.iconSize} />
           </Link>
-          <Link href="#" target="_blank" className="btn btn-circle p-2">
+          <Link
+            href="#"
+            target="_blank"
+            className="btn btn-circle btn-neutral p-2"
+          >
             <FontAwesomeIcon icon={faTwitter} size={appConfig.iconSize} />
           </Link>
-          <Link href="#" target="_blank" className="btn btn-circle p-2">
+          <Link
+            href="#"
+            target="_blank"
+            className="btn btn-circle btn-neutral p-2"
+          >
             <FontAwesomeIcon icon={faInstagram} size={appConfig.iconSize} />
           </Link>
-          <Link href="#" target="_blank" className="btn btn-circle p-2">
+          <Link
+            href="#"
+            target="_blank"
+            className="btn btn-circle btn-neutral p-2"
+          >
             <FontAwesomeIcon icon={faFacebook} size={appConfig.iconSize} />
           </Link>
         </div>

@@ -91,7 +91,7 @@ export default function ImageGeneration({
   return (
     <div className="mb-10">
       <p className="pb-5 font-mono text-lg">{features[12].title}</p>
-      <div className="mb-10 border-b-2 border-b-secondary" />
+      <div className="mb-10 border-b-2 border-b-primary" />
       <form onSubmit={handleSubmit} className="mb-20">
         <div className="form-control w-full max-w-lg mb-5">
           <label className="label mb-5">
@@ -168,7 +168,7 @@ export default function ImageGeneration({
                 <h2 className="card-title font-light">{el.title}</h2>
                 <div className="flex justify-end">
                   <button
-                    className="btn btn-md btn-square btn-primary mt-2"
+                    className="btn btn-md btn-square btn-ghost mt-2"
                     onClick={() => handleRemove(el.id)}
                   >
                     <FontAwesomeIcon

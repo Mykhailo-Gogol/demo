@@ -91,7 +91,7 @@ export default function LoginHero({ title }: iProps) {
                 </button>
                 <button
                   type="button"
-                  className={`btn ${!Boolean(form.email) ? 'disabled' : ''}`}
+                  className={`btn btn-neutral ${!Boolean(form.email) ? 'disabled' : ''}`}
                   onClick={handleGoogleSignIn}
                 >
                   <FontAwesomeIcon icon={faGoogle} size={appConfig.iconSize} />

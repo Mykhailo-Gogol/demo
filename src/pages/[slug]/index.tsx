@@ -161,7 +161,7 @@ export default function PageBySlug({
     <div className="mb-10">
       <p className="pb-5 font-mono text-lg">{feature.subtitle}</p>
       <div
-        className="mb-10 border-b-2 border-b-secondary"
+        className="mb-10 border-b-2 border-b-primary"
         style={{ backgroundColor: color }}
       />
       <form onSubmit={handleSubmit} className="mb-10">

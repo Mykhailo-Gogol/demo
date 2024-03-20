@@ -27,18 +27,15 @@ export default function Header() {
   }
 
   const authLinks = [
-    { link: '/', text: user ? 'App' : 'Welcome', badge: user ? true : false },
-    {
-      link: '/profile',
-      text: user ? 'Profile' : 'Login',
-      badge: user ? false : true,
-    },
+    { link: user ? '/app' : '/', text: 'Home' },
+    { link: '/profile', text: 'Profile', badge: user ? false : true },
   ]
 
   return (
     <header className="navbar pt-5 px-0 mb-10">
       <div className="flex-1">
-        <Link href={'/'} className="btn p-2 w-12 lg:w-20">
+        <Link href={user ? '/app' : '/'} className="btn">
+          Made with
           <FontAwesomeIcon
             icon={faHeart}
             size={appConfig.iconSize}
@@ -47,39 +44,45 @@ export default function Header() {
           />
         </Link>
       </div>
+
+      <div className="md:px-10 hidden md:block">
+        <Link href="#" className="font-light mr-3 md:mr-5 hover:underline">
+          How it works
+        </Link>
+        <Link href="#" className="font-light mr-3 md:mr-5 hover:underline">
+          About
+        </Link>
+      </div>
       <div className="flex-none gap-2">
-        <div className="form-control w-40 md:w-64">
-          <input
-            type="text"
-            placeholder="search"
-            className="input input-bordered"
-          />
-        </div>
         <div className="dropdown dropdown-end">
           <label
             tabIndex={0}
-            className="btn p-2 w-12 lg:w-20"
+            className="btn btn-circle avatar overflow-hidden"
             onClick={() => setVisible(true)}
           >
-            <div>
+            {/* <div className="w-10 rounded-full"> */}
+            {user?.email ? (
+              <span className="uppercase">{user?.email.slice(0, 2)}</span>
+            ) : (
               <FontAwesomeIcon
                 icon={faUser}
                 size={appConfig.iconSize}
                 width={appConfig.iconWidth}
                 height={appConfig.iconHeight}
               />
-            </div>
+            )}
+            {/* </div> */}
           </label>
           {visible && (
             <ul
               tabIndex={0}
-              className="bg-neutral w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl"
+              className="bg-neutral w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-10"
             >
               {authLinks.map(({ link, text, badge }) => (
                 <li key={link} className="mb-1">
                   <Link
                     href={link}
-                    className="py-4 font-light text-sm active:bg-secondary active:text-inherit"
+                    className="py-4 font-light text-sm active:bg-primary active:text-inherit"
                     onClick={() => setVisible(false)}
                   >
                     {text}
@@ -88,13 +91,32 @@ export default function Header() {
                 </li>
               ))}
 
+              <div className="block md:hidden">
+                <li className="mb-1">
+                  <Link
+                    href="#"
+                    className="py-4 font-light text-sm active:bg-primary active:text-inherit"
+                  >
+                    How it works
+                  </Link>
+                </li>
+                <li className="mb-1">
+                  <Link
+                    href="#"
+                    className="py-4 font-light text-sm active:bg-primary active:text-inherit"
+                  >
+                    About
+                  </Link>
+                </li>
+              </div>
+
               {user && (
                 <li
                   className="font-light text-sm"
                   onClick={() => setVisible(false)}
                 >
                   <button
-                    className="py-4 active:bg-secondary active:text-inherit"
+                    className="py-4 active:bg-primary active:text-inherit"
                     onClick={handleLogout}
                   >
                     Logout

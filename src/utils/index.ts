@@ -21,7 +21,7 @@ export const features: FeatureType[] = [
     tags: ['Transformation', 'Generation'],
     title: 'Grammar correction',
     subtitle: 'Corrects sentences into standard English.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'Correct this to standard English:',
     settings: {
       model: 'text-davinci-003',
@@ -38,7 +38,7 @@ export const features: FeatureType[] = [
     tags: ['Answers', 'Generation', 'Conversation'],
     title: 'Q&A',
     subtitle: 'Answer questions based on existing knowledge.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label:
       'I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with "Unknown".',
     settings: {
@@ -56,7 +56,7 @@ export const features: FeatureType[] = [
     tags: ['Transformation', 'Generation'],
     title: 'TL;DR summarization',
     subtitle: 'Summarize your very long text into a short summary.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'Summarize text below:',
     settings: {
       model: 'text-davinci-003',
@@ -73,7 +73,7 @@ export const features: FeatureType[] = [
     tags: ['Generation'],
     title: 'Ad from product description',
     subtitle: 'Turn a product description into ad copy.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label:
       'Write a creative ad for the following product to run on Facebook aimed at parents: Product:',
     settings: {
@@ -92,7 +92,7 @@ export const features: FeatureType[] = [
     title: 'JavaScript chatbot',
     subtitle:
       'This is a message-style chatbot that can answer questions about using JavaScript. It uses a few examples to get the conversation started.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'JavaScript question:',
     settings: {
       model: 'text-davinci-003',
@@ -109,7 +109,7 @@ export const features: FeatureType[] = [
     tags: ['Code', 'Translation'],
     title: 'Explain code',
     subtitle: 'Explain a complicated piece of code.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'Explain code below:',
     settings: {
       model: 'text-davinci-003',
@@ -126,7 +126,7 @@ export const features: FeatureType[] = [
     tags: ['Transformation', 'Generation'],
     title: 'Mood to color',
     subtitle: 'Turn a text description into a color.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'Generate CSS code for a color in hex like a:',
     settings: {
       model: 'text-davinci-003',
@@ -143,7 +143,7 @@ export const features: FeatureType[] = [
     tags: ['Conversation', 'Generation'],
     title: 'Friendly chat',
     subtitle: 'Emulate a text message conversation.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label:
       'You: What have you been up to? Friend: Watching old movies. You: Did you watch anything interesting? Friend: Yeah, I watched an old classic called Casablanca. It was really good! You:',
     settings: {
@@ -163,7 +163,7 @@ export const features: FeatureType[] = [
     title: 'Analogy maker',
     subtitle:
       'Create analogies. Modified from a community prompt to require fewer examples.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'Create an analogy for this phrase:',
     settings: {
       model: 'text-davinci-003',
@@ -180,7 +180,7 @@ export const features: FeatureType[] = [
     tags: ['Generation'],
     title: 'Essay outline',
     subtitle: 'Generate an outline for a research topic.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'Create an outline for an essay about:',
     settings: {
       model: 'text-davinci-003',
@@ -197,7 +197,7 @@ export const features: FeatureType[] = [
     tags: ['Generation'],
     title: 'Create study notes',
     subtitle: 'Provide a topic and get study notes.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label: 'What are 5 key points I should know when studying:',
     settings: {
       model: 'text-davinci-003',
@@ -214,7 +214,7 @@ export const features: FeatureType[] = [
     tags: ['Conversation', 'Generation'],
     title: 'Marv the sarcastic chat bot',
     subtitle: 'Marv is a factual chatbot that is also sarcastic.',
-    callToActionText: 'Try',
+    callToActionText: 'Start',
     label:
       'Marv is a chatbot that reluctantly answers questions with sarcastic responses. Question:',
     settings: {
@@ -282,5 +282,5 @@ export const appConfig: AppConfigType = {
   iconSize: 'lg',
   iconWidth: 20,
   iconHeight: 20,
-  defaultTheme: themes.dracula,
+  defaultTheme: themes.dark,
 }
