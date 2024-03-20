@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <header className="navbar pt-5 px-0 mb-10">
       <div className="flex-1">
-        <Link href={user ? '/app' : '/'} className="btn">
+        <Link href={user ? '/app' : '/'} className="btn bg-neutral">
           Made with
           <FontAwesomeIcon
             icon={faHeart}
@@ -49,7 +49,7 @@ export default function Header() {
         <Link href="/how-it-works" className="mr-3 md:mr-5 hover:underline">
           How it works
         </Link>
-        <Link href="#" className=" mr-3 md:mr-5 hover:underline">
+        <Link href="/about" className=" mr-3 md:mr-5 hover:underline">
           About
         </Link>
       </div>
@@ -57,7 +57,7 @@ export default function Header() {
         <div className="dropdown dropdown-end">
           <label
             tabIndex={0}
-            className="btn btn-circle avatar overflow-hidden"
+            className="btn btn-circle bg-neutral avatar overflow-hidden"
             onClick={() => setVisible(true)}
           >
             {/* <div className="w-10 rounded-full"> */}
@@ -113,7 +113,7 @@ export default function Header() {
               {user && (
                 <li className=" text-sm" onClick={() => setVisible(false)}>
                   <button
-                    className="py-4 bg-error text-error-content active:bg-primary active:text-inherit"
+                    className="py-4 bg-error text-error-content"
                     onClick={handleLogout}
                   >
                     Logout
