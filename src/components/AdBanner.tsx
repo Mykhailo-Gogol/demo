@@ -13,7 +13,7 @@ const AdBanner = (props: JSX.IntrinsicElements['ins']) => {
   return (
     <ins
       // @ts-ignore
-      class="adsbygoogle"
+      className="adsbygoogle"
       style={{
         display: 'block',
         overflow: 'hidden',

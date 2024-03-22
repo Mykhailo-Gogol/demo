@@ -227,9 +227,9 @@ export const features: FeatureType[] = [
     },
   },
   {
-    link: '/image-generation',
+    link: '/image_generation',
     src: Feature13,
-    slug: 'image-generation-link',
+    slug: 'image_generation_link',
     tags: ['Generation', 'Corrrection'],
     title: 'Image generation',
     subtitle: 'Generate image based on propmpt.',
@@ -276,6 +276,9 @@ export const themes = {
   night: 'night',
   coffee: 'coffee',
   winter: 'winter',
+  dim: 'dim',
+  nord: 'nord',
+  sunset: 'sunset',
 }
 
 export const appConfig: AppConfigType = {

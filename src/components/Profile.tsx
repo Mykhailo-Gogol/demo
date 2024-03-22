@@ -25,7 +25,7 @@ export default function Profile({ user }: iProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="avatar online placeholder mb-5">
-        <div className="w-20 rounded-full bg-neutral text-neutral-content">
+        <div className="w-20 rounded-full border-2">
           <span className="text-xl">
             {user.email?.slice(0, 2).toUpperCase()}
           </span>

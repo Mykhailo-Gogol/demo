@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <header className="navbar pt-5 px-0 mb-10">
       <div className="flex-1">
-        <Link href={user ? '/app' : '/'} className="btn bg-neutral">
+        <Link href={user ? '/app' : '/'} className="btn">
           Made with
           <FontAwesomeIcon
             icon={faHeart}
@@ -57,7 +57,7 @@ export default function Header() {
         <div className="dropdown dropdown-end">
           <label
             tabIndex={0}
-            className="btn btn-circle bg-neutral avatar overflow-hidden"
+            className="btn btn-circle avatar overflow-hidden"
             onClick={() => setVisible(true)}
           >
             {/* <div className="w-10 rounded-full"> */}
@@ -76,7 +76,7 @@ export default function Header() {
           {visible && (
             <ul
               tabIndex={0}
-              className="bg-neutral w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20"
+              className=" w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20"
             >
               {authLinks.map(({ link, text, badge }) => (
                 <li key={link} className="mb-1">
@@ -96,14 +96,16 @@ export default function Header() {
                   <Link
                     href="/how-it-works"
                     className="py-4  text-sm active:bg-primary active:text-inherit"
+                    onClick={() => setVisible(false)}
                   >
                     How it works
                   </Link>
                 </li>
                 <li className="mb-1">
                   <Link
-                    href="#"
+                    href="/about"
                     className="py-4  text-sm active:bg-primary active:text-inherit"
+                    onClick={() => setVisible(false)}
                   >
                     About
                   </Link>

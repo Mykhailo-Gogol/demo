@@ -76,7 +76,7 @@ export default function ImageGeneration({
 
   useEffect(() => {
     if (!user) {
-      router.push('/')
+      router.replace('/')
     }
   }, [user, router])
 
@@ -109,7 +109,7 @@ export default function ImageGeneration({
         </div>
         <button
           type="submit"
-          className="btn disabled:cursor-not-allowed"
+          className="btn btn-neutral disabled:cursor-not-allowed"
           disabled={!Boolean(prompt)}
         >
           Submit

@@ -19,7 +19,9 @@ export default function Hero() {
         <div className="diff-resizer"></div>
       </div>
       <div className="py-4 w-full lg:w-2/3">
-        <h1 className="text-5xl font-bold">Box Office News!</h1>
+        <h1 className="text-5xl font-bold [&::selection]:text-base-content relative col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text [-webkit-text-fill-color:transparent] [&::selection]:bg-blue-700/20 [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]">
+          Box Office News!
+        </h1>
         <p className="py-6 w-full md:w-2/3 text-xl">
           Master AI concepts through AI-powered exercises that help on your
           learning path.

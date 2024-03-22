@@ -1,23 +1,26 @@
 import React, { FormEvent, useEffect, useState } from 'react'
-import { appConfig, features } from '@/utils'
-import { useRouter } from 'next/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faBookmark,
-  faCopy,
-  faTrashCan,
-} from '@fortawesome/free-regular-svg-icons'
+  // appConfig,
+  features,
+} from '@/utils'
+import { useRouter } from 'next/router'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import {
+//   faBookmark,
+//   faCopy,
+//   faTrashCan,
+// } from '@fortawesome/free-regular-svg-icons'
 import { openai } from '@/api/openapi'
 import { FeatureType } from '@/utils/types'
 import {
-  useSession,
-  useSupabaseClient,
+  // useSession,
+  // useSupabaseClient,
   useUser,
 } from '@supabase/auth-helpers-react'
 import { TextCompletionsType } from '@/api/supabase/supabase.types'
-import { supabase } from '@/api/supabase'
-import { useQuery } from '@tanstack/react-query'
-import { getCompletionsBySlug } from '@/api/supabase/getCompletionsBySlug'
+// import { supabase } from '@/api/supabase'
+// import { useQuery } from '@tanstack/react-query'
+// import { getCompletionsBySlug } from '@/api/supabase/getCompletionsBySlug'
 
 const colorRegex = '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})'
 
@@ -36,40 +39,40 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const { slug } = params
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser()
 
-  const completions = await getCompletionsBySlug(slug, user)
+  // const completions = await getCompletionsBySlug(slug, user)
 
   const feature = features.find((feature) => feature.slug === slug)
 
   return {
     props: {
       feature,
-      completions,
+      // completions,
     },
   }
 }
 
 export default function PageBySlug({
   feature,
-  completions,
+  // completions,
 }: {
   feature: FeatureType
   completions: TextCompletionsType
 }) {
-  const supabaseClient = useSupabaseClient()
+  // const supabaseClient = useSupabaseClient()
   const router = useRouter()
   const user = useUser()
 
-  const session = useSession()
+  // const session = useSession()
 
-  const { data, refetch } = useQuery({
-    queryKey: ['completions'],
-    queryFn: () => getCompletionsBySlug(feature.slug, user),
-    initialData: completions,
-  })
+  // const { data, refetch } = useQuery({
+  //   queryKey: ['completions'],
+  //   queryFn: () => getCompletionsBySlug(feature.slug, user),
+  //   initialData: completions,
+  // })
 
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState('')
@@ -101,53 +104,53 @@ export default function PageBySlug({
     }
   }
 
-  const handleSave = async (e: FormEvent) => {
-    e.preventDefault()
+  // const handleSave = async (e: FormEvent) => {
+  //   e.preventDefault()
 
-    const { error, data } = await supabaseClient.from('completions').insert({
-      title: prompt,
-      completion: result,
-      completion_slug: feature.slug,
-    })
+  //   const { error, data } = await supabaseClient.from('completions').insert({
+  //     title: prompt,
+  //     completion: result,
+  //     completion_slug: feature.slug,
+  //   })
 
-    console.log(data)
-    console.log(error)
+  //   console.log(data)
+  //   console.log(error)
 
-    await refetch()
-  }
+  //   await refetch()
+  // }
 
-  const handleRemove = async (id: number) => {
-    const { error, data } = await supabaseClient
-      .from('completions')
-      .delete()
-      .eq('id', id)
-      .eq('completion_slug', feature.slug)
-      .eq('user_id', session?.user.id)
+  // const handleRemove = async (id: number) => {
+  //   const { error, data } = await supabaseClient
+  //     .from('completions')
+  //     .delete()
+  //     .eq('id', id)
+  //     .eq('completion_slug', feature.slug)
+  //     .eq('user_id', session?.user.id)
 
-    console.log(data)
-    console.log(error)
+  //   console.log(data)
+  //   console.log(error)
 
-    await refetch()
-  }
+  //   await refetch()
+  // }
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(result)
-      alert(`😎 ${result}`)
-    } catch (e) {
-      alert(`🎃 something went wrong`)
-    }
-  }
+  // const handleCopy = async () => {
+  //   try {
+  //     await navigator.clipboard.writeText(result)
+  //     alert(`😎 ${result}`)
+  //   } catch (e) {
+  //     alert(`🎃 something went wrong`)
+  //   }
+  // }
 
-  const handleClear = () => {
-    setPrompt('')
-    setResult('')
-    setColor('')
-  }
+  // const handleClear = () => {
+  //   setPrompt('')
+  //   setResult('')
+  //   setColor('')
+  // }
 
   useEffect(() => {
     if (!user) {
-      router.push('/')
+      router.replace('/')
     }
   }, [user, router])
 
@@ -201,7 +204,7 @@ export default function PageBySlug({
           className="textarea textarea-bordered textarea-md w-full max-w-lg"
         />
       </form>
-      <div className="flex justify-evenly md:justify-start max-w-lg">
+      {/* <div className="flex justify-evenly md:justify-start max-w-lg">
         <button
           type="submit"
           className="btn btn-square mx-5"
@@ -224,14 +227,14 @@ export default function PageBySlug({
         >
           <FontAwesomeIcon icon={faTrashCan} size={appConfig.iconSize} />
         </button>
-      </div>
+      </div> */}
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-20 items-start">
+      {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-20 items-start">
         {data
           ? data?.map((el) => (
               <div
                 key={el.id}
-                className="card bg-neutral shadow-lg mb-10 max-h-60 overflow-y-scroll"
+                className="card shadow-lg mb-10 max-h-60 overflow-y-scroll"
               >
                 <div className="card-body p-5 ">
                   <h2 className="card-title">{el.title}</h2>
@@ -249,7 +252,7 @@ export default function PageBySlug({
               </div>
             ))
           : 'Loading...'}
-      </div>
+      </div> */}
     </div>
   )
 }
