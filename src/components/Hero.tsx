@@ -12,7 +12,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="flexpx-10 bg-primary text-3xl text-white font-black grid place-content-center">
+          <div className="px-10 bg-primary text-3xl text-white font-black grid place-content-center">
             Learn with AI! ✨
           </div>
         </div>

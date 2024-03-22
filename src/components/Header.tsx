@@ -49,7 +49,7 @@ export default function Header() {
         <Link href="/how-it-works" className="mr-3 md:mr-5 hover:underline">
           How it works
         </Link>
-        <Link href="/about" className=" mr-3 md:mr-5 hover:underline">
+        <Link href="/about" className="hover:underline">
           About
         </Link>
       </div>
@@ -76,13 +76,13 @@ export default function Header() {
           {visible && (
             <ul
               tabIndex={0}
-              className=" w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20"
+              className="w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20 bg-neutral"
             >
               {authLinks.map(({ link, text, badge }) => (
                 <li key={link} className="mb-1">
                   <Link
                     href={link}
-                    className="py-4  text-sm active:bg-primary active:text-inherit"
+                    className="py-4 text-sm active:bg-primary text-inherit"
                     onClick={() => setVisible(false)}
                   >
                     {text}
@@ -95,7 +95,7 @@ export default function Header() {
                 <li className="mb-1">
                   <Link
                     href="/how-it-works"
-                    className="py-4  text-sm active:bg-primary active:text-inherit"
+                    className="py-4 text-sm active:bg-primary text-inherit"
                     onClick={() => setVisible(false)}
                   >
                     How it works
@@ -104,7 +104,7 @@ export default function Header() {
                 <li className="mb-1">
                   <Link
                     href="/about"
-                    className="py-4  text-sm active:bg-primary active:text-inherit"
+                    className="py-4 text-sm active:bg-primary text-inherit"
                     onClick={() => setVisible(false)}
                   >
                     About

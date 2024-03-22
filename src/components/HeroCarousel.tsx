@@ -25,7 +25,7 @@ export default function HeroCarousel() {
                 width={500}
                 height={500}
               />
-              <p className="text-xl text-center absolute w-full p-2 bottom-0 overflow-x-hidden whitespace-nowrap text-ellipsis">
+              <p className="text-xl text-center absolute w-full p-2 bottom-0 overflow-x-hidden whitespace-nowrap text-ellipsis glass">
                 {item.title}
               </p>
             </div>
