@@ -27,14 +27,14 @@ export default function Header() {
   }
 
   const authLinks = [
-    { link: user ? '/app' : '/', text: 'Home' },
+    { link: user ? '/features' : '/', text: 'Home' },
     { link: '/profile', text: 'Profile', badge: user ? false : true },
   ]
 
   return (
     <header className="navbar pt-5 px-0 mb-10">
       <div className="flex-1">
-        <Link href={user ? '/app' : '/'} className="btn">
+        <Link href={user ? '/features' : '/'} className="btn">
           Made with
           <FontAwesomeIcon
             icon={faHeart}
@@ -49,8 +49,11 @@ export default function Header() {
         <Link href="/how-it-works" className="mr-3 md:mr-5 hover:underline">
           How it works
         </Link>
-        <Link href="/about" className="hover:underline">
+        <Link href="/about" className="mr-3 md:mr-5 hover:underline">
           About
+        </Link>
+        <Link href="/settings" className="hover:underline">
+          Settings
         </Link>
       </div>
       <div className="flex-none gap-2">
@@ -76,13 +79,13 @@ export default function Header() {
           {visible && (
             <ul
               tabIndex={0}
-              className="w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20 bg-neutral"
+              className="w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20 glass"
             >
               {authLinks.map(({ link, text, badge }) => (
                 <li key={link} className="mb-1">
                   <Link
                     href={link}
-                    className="py-4 text-sm active:bg-primary text-inherit"
+                    className="py-4 text-sm active:bg-primary"
                     onClick={() => setVisible(false)}
                   >
                     {text}
@@ -95,7 +98,7 @@ export default function Header() {
                 <li className="mb-1">
                   <Link
                     href="/how-it-works"
-                    className="py-4 text-sm active:bg-primary text-inherit"
+                    className="py-4 text-sm active:bg-primary"
                     onClick={() => setVisible(false)}
                   >
                     How it works
@@ -104,10 +107,19 @@ export default function Header() {
                 <li className="mb-1">
                   <Link
                     href="/about"
-                    className="py-4 text-sm active:bg-primary text-inherit"
+                    className="py-4 text-sm active:bg-primary"
                     onClick={() => setVisible(false)}
                   >
                     About
+                  </Link>
+                </li>
+                <li className="mb-1">
+                  <Link
+                    href="/settings"
+                    className="py-4 text-sm active:bg-primary"
+                    onClick={() => setVisible(false)}
+                  >
+                    Settings
                   </Link>
                 </li>
               </div>

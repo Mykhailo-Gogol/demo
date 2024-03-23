@@ -10,7 +10,7 @@ import {
 import { useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 
-export default function App() {
+export default function Features() {
   // Get the value from local storage if it exists
 
   const collapsed =

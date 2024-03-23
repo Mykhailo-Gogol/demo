@@ -285,5 +285,5 @@ export const appConfig: AppConfigType = {
   iconSize: 'lg',
   iconWidth: 20,
   iconHeight: 20,
-  defaultTheme: themes.dark,
+  defaultTheme: themes.sunset,
 }
