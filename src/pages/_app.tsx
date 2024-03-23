@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
 
@@ -13,12 +13,19 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
+import { themeChange } from 'theme-change'
+
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [supabaseClient] = useState(() => createPagesBrowserClient())
 
   const willChange = useWillChange()
+
+  useEffect(() => {
+    themeChange(false)
+    // 👆 false parameter is required for react project
+  }, [])
 
   return (
     <SessionContextProvider

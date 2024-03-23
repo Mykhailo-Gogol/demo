@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
@@ -11,8 +11,6 @@ export default function Header() {
   const supabaseClient = useSupabaseClient()
 
   const router = useRouter()
-
-  const [visible, setVisible] = useState(false)
 
   const handleLogout = async () => {
     try {
@@ -57,75 +55,77 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <div className="dropdown dropdown-end">
-          <label
-            tabIndex={0}
-            className="btn btn-circle avatar overflow-hidden"
-            onClick={() => setVisible(true)}
-          >
-            {/* <div className="w-10 rounded-full"> */}
-            {user?.email ? (
-              <span className="uppercase">{user?.email.slice(0, 2)}</span>
-            ) : (
-              <FontAwesomeIcon
-                icon={faUser}
-                size={appConfig.iconSize}
-                width={appConfig.iconWidth}
-                height={appConfig.iconHeight}
-              />
-            )}
-            {/* </div> */}
-          </label>
-          {visible && (
-            <ul
-              tabIndex={0}
-              className="w-80 mt-3 p-4 shadow menu dropdown-content rounded-xl relative z-20 glass"
-            >
+        <label
+          htmlFor="drawer-menu"
+          className="drawer-button btn btn-circle avatar overflow-hidden"
+        >
+          {user?.email ? (
+            <span className="uppercase">{user?.email.slice(0, 2)}</span>
+          ) : (
+            <FontAwesomeIcon
+              icon={faUser}
+              size={appConfig.iconSize}
+              width={appConfig.iconWidth}
+              height={appConfig.iconHeight}
+            />
+          )}
+        </label>
+
+        {/* drawer */}
+        <div className="drawer drawer-end z-10">
+          <input id="drawer-menu" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-side">
+            <label
+              htmlFor="drawer-menu"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            />
+            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
               {authLinks.map(({ link, text, badge }) => (
                 <li key={link} className="mb-1">
-                  <Link
-                    href={link}
-                    className="py-4 text-sm active:bg-primary"
-                    onClick={() => setVisible(false)}
+                  <label
+                    htmlFor="drawer-menu"
+                    className="drawer-button py-4 text-sm active:bg-primary"
+                    onClick={() => router.push(link)}
                   >
                     {text}
                     {badge && <span className="badge badge-ghost">New</span>}
-                  </Link>
+                  </label>
                 </li>
               ))}
 
               <div className="block md:hidden">
                 <li className="mb-1">
-                  <Link
-                    href="/how-it-works"
-                    className="py-4 text-sm active:bg-primary"
-                    onClick={() => setVisible(false)}
+                  <label
+                    htmlFor="drawer-menu"
+                    className="drawer-button py-4 text-sm active:bg-primary"
+                    onClick={() => router.push('/how-it-works')}
                   >
                     How it works
-                  </Link>
+                  </label>
                 </li>
                 <li className="mb-1">
-                  <Link
-                    href="/about"
+                  <label
+                    htmlFor="drawer-menu"
                     className="py-4 text-sm active:bg-primary"
-                    onClick={() => setVisible(false)}
+                    onClick={() => router.push('/about')}
                   >
                     About
-                  </Link>
+                  </label>
                 </li>
                 <li className="mb-1">
-                  <Link
-                    href="/settings"
+                  <label
+                    htmlFor="drawer-menu"
                     className="py-4 text-sm active:bg-primary"
-                    onClick={() => setVisible(false)}
+                    onClick={() => router.push('/settings')}
                   >
                     Settings
-                  </Link>
+                  </label>
                 </li>
               </div>
 
               {user && (
-                <li className=" text-sm" onClick={() => setVisible(false)}>
+                <li className=" text-sm">
                   <button
                     className="py-4 bg-error text-error-content"
                     onClick={handleLogout}
@@ -135,7 +135,7 @@ export default function Header() {
                 </li>
               )}
             </ul>
-          )}
+          </div>
         </div>
       </div>
     </header>
