@@ -14,13 +14,11 @@ export default function Features() {
   // Get the value from local storage if it exists
 
   const collapsed =
-    (typeof window !== 'undefined' &&
-      localStorage.getItem('box-office-app:collapsed')) ||
-    ''
+    (typeof window !== 'undefined' && localStorage.getItem('collapsed')) || ''
   const [collapsedMode, setPreviewMode] = useState(collapsed === 'true')
 
   useEffect(() => {
-    localStorage.setItem('box-office-app:collapsed', String(collapsedMode))
+    localStorage.setItem('collapsed', String(collapsedMode))
   }, [collapsedMode])
 
   const user = useUser()

@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { themeChange } from 'theme-change'
 
 export default function Settings() {
-  const [theme, setTheme] = useState<string | null>()
+  const [theme, setTheme] = useState<string | null>('')
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTheme(e.target.value)
+  }
 
   useEffect(() => {
     themeChange(false)
-    setTheme(localStorage.getItem('theme'))
   }, [theme])
-
-  useEffect(() => {
-    themeChange(false)
-    // 👆 false parameter is required for react project
-  }, [])
 
   return (
     <div className="flex justify-center">
@@ -21,7 +19,7 @@ export default function Settings() {
         <select
           data-choose-theme={theme}
           className="select select-primary w-full"
-          onChange={(v) => setTheme(v.target.value)}
+          onChange={handleChange}
         >
           <option value="light">Light</option>
           <option value="dark">Dark</option>
